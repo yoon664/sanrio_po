@@ -10,6 +10,9 @@ https://www.sanrio.co.jp/
 [헤더]
 로고   MENU  바
 
+사용폰트
+https://fonts.google.com/specimen/Bagel+Fat+One?lang=en_Latn&categoryFilters=Feeling:%2FExpressive%2FPlayful
+
 
 [Section1]
 키티  캐릭터
