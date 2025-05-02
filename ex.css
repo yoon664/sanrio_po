@@ -222,7 +222,7 @@ body {
 /* ============================= */
 .characters-scroll {
   padding: 40px;
-  background-color: #fefefe;
+  background-color: #f9f7f2;
 }
 
 .characters-scroll h2 {
@@ -233,7 +233,7 @@ body {
 
 .scroll-wrapper {
     display: flex;
-    overflow-x: auto;
+    overflow-x: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     gap: 32px;
@@ -243,8 +243,11 @@ body {
 }  
 
 .character-card {
-  flex: 0 0 calc((100% - 64px) / 3); /* gap 고려해서 3개 딱 맞게 */
-  scroll-snap-align: start;
+  flex: 0 0 calc((100% - 64px) / 4); /* 한번에 3개씩 보이게게*/
+  /* flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(33.3333% - 21.3333px); */
+  /* scroll-snap-align: start; */
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -256,6 +259,10 @@ body {
 
 .character-card:hover {
   transform: translateY(-10px);
+}
+
+.char-info {
+    text-align: center;
 }
 
 .char-image {
@@ -272,7 +279,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity   0.3s ease;
 }
 
 .img-hover {

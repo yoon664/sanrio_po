@@ -101,24 +101,90 @@
     </section>
 
     <!-- 가로 스크롤!!!! -->
-    <section class="horizontal-scroll">
-        <h2>FRAGRANCE LINE UP</h2>
-        <div class="scroll-container">
-          <div class="scroll-item">
-            <img src="img/item1.jpg" alt="item1">
-            <p>시트러스 향</p>
+    <section class="characters-scroll">
+        <h2>SANRIO CHARACTERS</h2>
+        <div class="scroll-wrapper">
+            <div class="character-card zigzag">
+                <div class="char-image">
+                  <img src="img/scroll/kitty1.png" alt="Hello Kitty" class="img-default">
+                  <img src="img/scroll/kitty2.png" alt="Hello Kitty hover" class="img-hover">
+                </div>
+                <div class="char-info">
+                  <h3>HELLO KITTY</h3>
+                  <p>하얀 고양이, 사랑과 우정을 상징해요.</p>
+                </div>
+            </div>
+          <div class="character-card">
+            <div class="char-image">
+                <img src="img/scroll/cinamon1.png" alt="cinamon" class="img-default">
+                <img src="img/scroll/cinamon2.png" alt="cinamon hover" class="img-hover">
+            </div>
+            <div class="char-info">
+                <h3>CINNAMOROLL</h3>
+                <p>하늘을 나는 귀여운 강아지.</p>
+            </div>
           </div>
-          <div class="scroll-item">
-            <img src="img/item2.jpg" alt="item2">
-            <p>플로럴 향</p>
-          </div>
-          <div class="scroll-item">
-            <img src="img/item3.jpg" alt="item3">
-            <p>머스크 향</p>
-          </div>
-          <!-- 추가 아이템들 -->
+          <div class="character-card">
+            <div class="char-image">
+              <img src="img/scroll/melody1.png" alt="Hello Kitty" class="img-default">
+              <img src="img/scroll/melody2.png" alt="Hello Kitty hover" class="img-hover">
+            </div>
+            <div class="char-info">
+              <h3>MY MELODY</h3>
+              <p>핑크 후드를 쓴 토끼, 상냥하고 귀여운 친구.</p>
+            </div>
+        </div>
+        <div class="character-card">
+            <div class="char-image">
+              <img src="img/scroll/pompom1.png" alt="Hello Kitty" class="img-default">
+              <img src="img/scroll/pompom2.png" alt="Hello Kitty hover" class="img-hover">
+            </div>
+            <div class="char-info">
+              <h3>POMPOMPURIN</h3>
+              <p>노란 푸딩처럼 부드러운 골든리트리버.</p>
+            </div>
+        </div>
+        <div class="character-card">
+            <div class="char-image">
+              <img src="img/scroll/KUROMI1.png" alt="Hello Kitty" class="img-default">
+              <img src="img/scroll/KUROMI2.png" alt="Hello Kitty hover" class="img-hover">
+            </div>
+            <div class="char-info">
+              <h3>KUROMI</h3>
+              <p>자칭 마이 멜로디의 라이벌.</p>
+            </div>
+        </div>
+        <div class="character-card">
+            <div class="char-image">
+              <img src="img/scroll/pochacco1.png" alt="Hello Kitty" class="img-default">
+              <img src="img/scroll/pochacco2.png" alt="Hello Kitty hover" class="img-hover">
+            </div>
+            <div class="char-info">
+              <h3>POCHACCO</h3>
+              <p>산책을 좋아하는 귀여운 강아지예요.</p>
+            </div>
+        </div>
+        <div class="character-card">
+            <div class="char-image">
+              <img src="img/scroll/twin1.png" alt="Hello Kitty" class="img-default">
+              <img src="img/scroll/twin2.png" alt="Hello Kitty hover" class="img-hover">
+            </div>
+            <div class="char-info">
+              <h3>LITTLE TWIN STARS</h3>
+              <p>별나라에서 온 쌍둥이 남매, 키키 & 라라.</p>
+            </div>
+        </div>
         </div>
       </section>
+      
+      <script>
+       const scrollContainer = document.querySelector('.scroll-wrapper');
+        scrollContainer.addEventListener('wheel', function (e) {
+        if (e.deltaY === 0) return;
+        e.preventDefault(); // 세로 스크롤 방지 (해당 영역만)
+        scrollContainer.scrollLeft += e.deltaY;
+        }, { passive: false });
+      </script>
       
     
 
