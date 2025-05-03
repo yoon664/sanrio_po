@@ -148,8 +148,9 @@ header {
 }
 
 .concept-left-text h3 {
-    font-size: 18px;
-    font-weight: 500;
+    font-family: "Bagel Fat One", system-ui;
+    font-size: 25px;
+    /* font-weight: 500; */
     color: #444;
     margin-bottom: 16px;
     letter-spacing: 2px;
@@ -261,9 +262,11 @@ header {
   }
   
   .characters-scroll h2 {
+    font-family: "Bagel Fat One", system-ui;
     text-align: center;
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 40px;
+    margin-bottom: 40px;
+    color: #f44588;
   }
   
   .scroll-wrapper {
