@@ -55,15 +55,15 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-left">
-        <img src="img/hellokitty02.jpg" alt="Model" />
+        <img src="img/kitty concept02.png" alt="Model" />
         <div class="hero-text">
             <h1>Sanrio</h1>
             <p>One World, Connecting Smiles</p>
         </div>
         </div>
         <div class="hero-right">
-        <img src="img/pompompurin03.png" alt="Product 1" />
-        <img src="img/cinnamoroll04.jpg" alt="Product 2" />
+        <img src="img/pompompurin01.jpg" alt="Product 1" />
+        <img src="img/pochacco7.png" alt="Product 2" />
         </div>
     </section>
 
@@ -176,24 +176,7 @@
         </div>
         </div>
       </section>
-      
-      <script>
-        const scrollWrapper = document.querySelector('.scroll-wrapper');
-      
-        scrollWrapper.addEventListener('wheel', function (e) {
-          // 가로 스크롤을 처리
-          if (e.deltaY === 0) return;
-          e.preventDefault();
-          // 가로 스크롤 끝인지 확인
-          if (e.deltaY > 0 && scrollWrapper.scrollLeft + scrollWrapper.offsetWidth >= scrollWrapper.scrollWidth) {
-            // 세로로 이동
-            window.scrollBy(0, window.innerHeight);
-          } else {
-            // 가로 스크롤
-            scrollWrapper.scrollLeft += e.deltaY;
-          }
-        }, { passive: false });
-      </script>
+     
 
       <div> recruit 파트 </div>
 
@@ -224,7 +207,7 @@
             </div>
           </div>
       </footer>
-      
-    
+
+      <script src="js/script.js" ></script>
 </body>
 </html>
