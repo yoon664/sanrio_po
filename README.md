@@ -1,6 +1,7 @@
 # 250503
 
 ## menu click animation
+https://lottiefiles.com/free-animation/hamburger-Lhi7wLaPf6
 
 ## concept 부분 그리드로 한거 flex로 변경
 
@@ -12,6 +13,10 @@ js는 여유있으면..ㅠㅜ
 https://gsap.com/docs/v3/Plugins/ScrollTrigger/
 https://codepen.io/GreenSock/pen/bGexQpq
 https://www.designkits.co.kr/blog/web-css/animation/GSAP-ScrollTrigger?srsltid=AfmBOorIL6yJHA4VftxuXWJERJZJmnkGN05Nyb86JCaeB77y5MRZlP4u
+
+## svg 사이트
+https://icons8.com/icons/set/link
+https://www.svgviewer.dev/s/492227/link
 
 ---
 

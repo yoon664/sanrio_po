@@ -422,7 +422,6 @@ footer {
     align-items: center;
     font-family: 'Noto Sans JP', sans-serif;
     color: #f44588;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* 가독성 향상 */
   }
   
   .footer-container {
@@ -445,19 +444,44 @@ footer {
   
   .footer-info a,
   .footer-social a {
+    font-weight: bold;
     text-decoration: none;
     color: #f44588;
     font-size: 14px;
     transition: color 0.3s ease;
   }
   
-  .footer-info a:hover,
+  /* .footer-info a:hover,
   .footer-social a:hover {
-    color: #aad8ff; /* 포인트 색상 */
-  }
-  
-  .footer-copyright p {
-    font-size: 12px;
+    color: #aad8ff;
+  } */
+
+.footer-info li a {
+    position: relative;
+    padding-bottom: 5px;
+}
+.footer-info li a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f44588;
+    transition: width 0.3s ease;
+}
+.footer-info li a:hover:after {
+    width: 100%;
+}
+
+.footer-copyright h1 {
+    font-family: "Bagel Fat One", system-ui;
+    font-size: 180px;
+    color: #0067aa;
+}
+.footer-copyright p {
+    font-size: 13px;
+    font-weight: bold;
     color: #f44588;
     margin-top: 20px;
   }
