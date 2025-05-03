@@ -48,7 +48,7 @@ Our Character
 
 마우스hover : 바로가기버튼 캐릭터이름
 
-https://wsss.tistory.com/1569 가로 스크롤 참고용용
+https://wsss.tistory.com/1569 가로 스크롤 참고용
 
 
 
