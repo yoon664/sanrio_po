@@ -410,6 +410,54 @@ header {
   }  
 
 
+/* recruit 섹션 */
+.recruit-button-wrap {
+    grid-area: right-text-bottom;
+    max-width: 450px;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 130px;
+}
+
+.recruit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    text-decoration: none;
+    color: #000;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.recruit-btn2 {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #444;
+    margin-left: 16px;
+    letter-spacing: 2px;
+}
+
+.recruit-btn .arrow {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.recruit-btn .text {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.recruit-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
 /* footer */
 footer {
     height: 100vh;
