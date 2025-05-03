@@ -11,6 +11,7 @@ js는 여유있으면..ㅠㅜ
 ## 가로 스크롤 js 검색해서 찾아보고 변경할것 (아래는 참고용)
 https://gsap.com/docs/v3/Plugins/ScrollTrigger/
 https://codepen.io/GreenSock/pen/bGexQpq
+https://www.designkits.co.kr/blog/web-css/animation/GSAP-ScrollTrigger?srsltid=AfmBOorIL6yJHA4VftxuXWJERJZJmnkGN05Nyb86JCaeB77y5MRZlP4u
 
 ---
 

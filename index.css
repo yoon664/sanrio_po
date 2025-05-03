@@ -67,6 +67,63 @@ header {
     color: #f44588;
 }
 
+/* ====== nav icon ====== */
+#nav-icon3 {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#nav-icon3 span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #0067aa; /* 원하는 색상으로 설정 */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+#nav-icon3 span:nth-child(1) {
+    top: 0px;
+  }
+  
+  #nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3) {
+    top: 18px;
+  }
+  
+  #nav-icon3 span:nth-child(4) {
+    top: 36px;
+  }
+  
+  #nav-icon3.open span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+  }
+  
+  #nav-icon3.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  
+  #nav-icon3.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  
+  #nav-icon3.open span:nth-child(4) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+  }
+
 
 /* 메인 이미지 */
 .hero {
