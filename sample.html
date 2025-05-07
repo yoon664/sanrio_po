@@ -11,291 +11,226 @@
             padding: 0;
         }
 
-        /* Icon 1 */
-
-#nav-icon1, #nav-icon2, #nav-icon3, #nav-icon4 {
-  width: 60px;
-  height: 45px;
-  position: relative;
-  margin: 50px auto;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
-  cursor: pointer;
+/* CSS */
+.concept {
+    background-color: #f9f7f2;
+    padding: 80px 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
-#nav-icon1 span, #nav-icon3 span, #nav-icon4 span {
-  display: block;
-  position: absolute;
-  height: 9px;
-  width: 100%;
-  background: #d3531a;
-  border-radius: 9px;
-  opacity: 1;
-  left: 0;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+.concept-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-#nav-icon1 span:nth-child(1) {
-  top: 0px;
+/* 왼쪽 상단 영역 */
+.concept-left {
+    width: 30%;
+    max-width: 380px;
+    padding-top: 40px;
+    position: absolute;
+    top: 0;
+    left: 40px;
 }
 
-#nav-icon1 span:nth-child(2) {
-  top: 18px;
+.concept-left h3 {
+    font-family: "Bagel Fat One", system-ui;
+    font-size: 25px;
+    color: #444;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
 }
 
-#nav-icon1 span:nth-child(3) {
-  top: 36px;
+.concept-left h2 {
+    font-size: 36px;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    font-weight: 700;
 }
 
-#nav-icon1.open span:nth-child(1) {
-  top: 18px;
-  -webkit-transform: rotate(135deg);
-  -moz-transform: rotate(135deg);
-  -o-transform: rotate(135deg);
-  transform: rotate(135deg);
+/* 중앙 이미지 영역 */
+.concept-center {
+    width: 40%;
+    margin: 0 auto;
+    padding: 120px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
 }
 
-#nav-icon1.open span:nth-child(2) {
-  opacity: 0;
-  left: -60px;
+.concept-image {
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-#nav-icon1.open span:nth-child(3) {
-  top: 18px;
-  -webkit-transform: rotate(-135deg);
-  -moz-transform: rotate(-135deg);
-  -o-transform: rotate(-135deg);
-  transform: rotate(-135deg);
+.concept-image img {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 2/3;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
-/* Icon 2 */
-
-#nav-icon2 {
+/* 오른쪽 하단 영역 */
+.concept-right {
+    width: 30%;
+    max-width: 450px;
+    position: absolute;
+    bottom: 0;
+    right: 40px;
+    padding-bottom: 40px;
 }
 
-#nav-icon2 span {
-  display: block;
-  position: absolute;
-  height: 9px;
-  width: 50%;
-  background: #d3531a;
-  opacity: 1;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+.concept-description {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
 }
 
-#nav-icon2 span:nth-child(even) {
-  left: 50%;
-  border-radius: 0 9px 9px 0;
+.concept-button-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-#nav-icon2 span:nth-child(odd) {
-  left:0px;
-  border-radius: 9px 0 0 9px;
+.concept-footer {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+    margin-top: 40px;
 }
 
-#nav-icon2 span:nth-child(1), #nav-icon2 span:nth-child(2) {
-  top: 0px;
+/* 버튼 스타일 */
+.concept-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    text-decoration: none;
+    color: #000;
+    flex-direction: column;
+    transition: all 0.3s ease;
 }
 
-#nav-icon2 span:nth-child(3), #nav-icon2 span:nth-child(4) {
-  top: 18px;
+.concept-btn2 {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #444;
+    margin-left: 16px;
+    letter-spacing: 2px;
 }
 
-#nav-icon2 span:nth-child(5), #nav-icon2 span:nth-child(6) {
-  top: 36px;
+.concept-btn .arrow {
+    font-size: 20px;
+    margin-bottom: 6px;
 }
 
-#nav-icon2.open span:nth-child(1),#nav-icon2.open span:nth-child(6) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+.concept-btn .text {
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 
-#nav-icon2.open span:nth-child(2),#nav-icon2.open span:nth-child(5) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+.concept-btn:hover {
+    background-color: #000;
+    color: #fff;
 }
 
-#nav-icon2.open span:nth-child(1) {
-  left: 5px;
-  top: 7px;
-}
-
-#nav-icon2.open span:nth-child(2) {
-  left: calc(50% - 5px);
-  top: 7px;
-}
-
-#nav-icon2.open span:nth-child(3) {
-  left: -50%;
-  opacity: 0;
-}
-
-#nav-icon2.open span:nth-child(4) {
-  left: 100%;
-  opacity: 0;
-}
-
-#nav-icon2.open span:nth-child(5) {
-  left: 5px;
-  top: 29px;
-}
-
-#nav-icon2.open span:nth-child(6) {
-  left: calc(50% - 5px);
-  top: 29px;
-}
-
-/* Icon 3 */
-
-#nav-icon3 span:nth-child(1) {
-  top: 0px;
-}
-
-#nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3) {
-  top: 18px;
-}
-
-#nav-icon3 span:nth-child(4) {
-  top: 36px;
-}
-
-#nav-icon3.open span:nth-child(1) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
-}
-
-#nav-icon3.open span:nth-child(2) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-#nav-icon3.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-#nav-icon3.open span:nth-child(4) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
-}
-
-/* Icon 4 */
-
-#nav-icon4 {
-}
-
-#nav-icon4 span:nth-child(1) {
-  top: 0px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-#nav-icon4 span:nth-child(2) {
-  top: 18px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-#nav-icon4 span:nth-child(3) {
-  top: 36px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-#nav-icon4.open span:nth-child(1) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  top: -3px;
-  left: 8px;
-}
-
-#nav-icon4.open span:nth-child(2) {
-  width: 0%;
-  opacity: 0;
-}
-
-#nav-icon4.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 39px;
-  left: 8px;
+/* 반응형 스타일 */
+@media (max-width: 1200px) {
+    .concept-inner {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .concept-left,
+    .concept-center,
+    .concept-right {
+        position: static;
+        width: 100%;
+        margin: 0 auto 40px;
+        text-align: center;
+    }
+    
+    .concept-center {
+        padding: 40px 0;
+    }
+    
+    .concept-image img {
+        max-width: 100%;
+    }
+    
+    .concept-button-wrap {
+        justify-content: center;
+    }
 }
     </style>
 </head>
 <body>
     <header>
-        <div class="nav-btn" id="nav-icon3">
-            <!-- <div id="nav-icon3"> -->
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            <!-- </div> -->
-        </div>
-        <div id="nav-icon1">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div id="nav-icon2">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div id="nav-icon3">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div id="nav-icon4">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+        
+       /* HTML */
+       <!-- 회사 소개 Section -->
+       <section class="concept">
+           <div class="concept-inner">
+               <!-- 왼쪽 상단 제목 -->
+               <div class="concept-left">
+                   <h3>❤︎ COMPANY</h3>
+                   <h2>맑고 깨끗한 강가에<br>문화를 쌓아 올리자</h2>
+               </div>
+               
+               <!-- 중앙 이미지 -->
+               <div class="concept-center">
+                   <div class="concept-image">
+                       <img src="img/hellokitty03.jpg" alt="Model photo">
+                   </div>
+               </div>
+               
+               <!-- 오른쪽 하단 내용 -->
+               <div class="concept-right">
+                   <div class="concept-description">
+                       <p>
+                           산리오라는 사명은 스페인어 San Rio에서 유래하고 있습니다.<br>
+                           San은 영어의 Saint(St.), "성스러운"을 의미하며,<br>
+                           Rio는 영어의 River, "강"을 뜻합니다.<br><br>
+                           Sanrio는 Saint River, <br>
+                           즉 "성스러운 강"이라는 의미를 지닌 사명입니다.
+                       </p>
+                   </div>
+                   
+                   <div class="concept-button-wrap">
+                       <a href="#" class="concept-btn">
+                           <span class="arrow">→</span>
+                       </a>
+                       <a href="#" class="concept-btn2">
+                           <span class="text">COMPANY</span>
+                       </a>
+                   </div>
+                   
+                   <div class="concept-footer">
+                       <p>
+                           앞으로도 그 우정을 키워가기 위해서 다양한 커뮤니케이션 수단을 제공함으로써, 온세상을 흐르는 강물과 같이, 세계 구석구석에 이르기까지 서로서로 사이 좋은 고리, 우정의 고리를 펼쳐 가고 싶습니다.
+                       </p>
+                   </div>
+               </div>
+           </div>
+       </section>
     </header>
 
     <section style="width:100%;height:100vh;background:red;display:flex;justify-content: center;align-items: center;">01</section>

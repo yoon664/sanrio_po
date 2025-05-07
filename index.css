@@ -200,100 +200,107 @@ header {
 /* =========== 회사 소개 파트 ========== */
 .concept {
     background-color: #f9f7f2;
-    padding: 120px 40px;
+    padding: 80px 0;
     font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .concept-inner {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr 1.2fr;
-    grid-template-areas: 
-        "left-text . ."
-        ". image right-text-top"
-        ". . right-text-bottom";
-    gap: 30px;
-    align-items: start;
+    padding: 0 40px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.concept-left-text {
-    grid-area: left-text;
-    padding-top: 40px;
+/* 왼쪽 상단 영역 */
+.concept-left {
+    width: 30%;
     max-width: 380px;
-    justify-self: start;
+    padding-top: 40px;
+    position: absolute;
+    top: 0;
+    left: 40px;
 }
 
-.concept-left-text h3 {
+.concept-left h3 {
     font-family: "Bagel Fat One", system-ui;
     font-size: 25px;
-    /* font-weight: 500; */
     color: #444;
     margin-bottom: 16px;
     letter-spacing: 2px;
 }
 
-.concept-left-text h2 {
+.concept-left h2 {
     font-size: 36px;
     line-height: 1.4;
     margin-bottom: 30px;
     font-weight: 700;
+    word-break: keep-all; /* 단어 단위로 줄바꿈 처리 - 제목이 잘리지 않도록 */
+}
+
+/* 중앙 이미지 영역 */
+.concept-center {
+    width: 40%;
+    margin: 0 auto;
+    margin-left: calc(25%); /* 중앙에서 왼쪽으로 20px 이동 */
+    padding: 250px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
 }
 
 .concept-image {
-    grid-area: image;
-    justify-self: center;
     border-radius: 12px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    transform: translate(-10px, -20px);
 }
 
 .concept-image img {
     display: block;
-    width: 400px;
-    height: 600px;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    aspect-ratio: 2/3;
     border-radius: 12px;
     object-fit: cover;
 }
 
-.concept-right-text {
-    display: contents; 
-    /* 컨테이너를 분리, 자식 요소들이 각자 grid area를 가지도록록 */
+/* 오른쪽 하단 영역 */
+.concept-right {
+    width: 30%;
+    max-width: 450px;
+    position: absolute;
+    bottom: 0;
+    right: 70px; /* 40px에서 60px로 변경하여 왼쪽으로 20px 이동 */
+    padding-bottom: 40px;
 }
 
 .concept-description {
-    grid-area: right-text-top;
-    max-width: 450px;
     color: #333;
-    justify-self: end;
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 20px;
+    line-height: 2;
     margin-bottom: 30px;
-    align-self: center;
 }
 
 .concept-button-wrap {
-    grid-area: right-text-bottom;
-    max-width: 450px;
-    /* justify-self: end; */
     display: flex;
     align-items: center;
-    margin-bottom: 130px;
+    margin-bottom: 30px;
 }
 
 .concept-footer {
-    grid-area: right-text-bottom;
-    max-width: 450px;
-    justify-self: end;
-    margin-top: 120px; /* footer를 아래로 이동 */
     font-size: 14px;
     line-height: 1.8;
     color: #666;
-    margin-top: 160px;
+    margin-top: 40px;
 }
 
+/* 버튼 스타일 */
 .concept-btn {
     display: inline-flex;
     align-items: center;
@@ -330,6 +337,36 @@ header {
 .concept-btn:hover {
     background-color: #000;
     color: #fff;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 1200px) {
+    .concept-inner {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .concept-left,
+    .concept-center,
+    .concept-right {
+        position: static;
+        width: 100%;
+        margin: 0 auto 40px;
+        text-align: center;
+    }
+    
+    .concept-center {
+        padding: 40px 0;
+    }
+    
+    .concept-image img {
+        max-width: 100%;
+    }
+    
+    .concept-button-wrap {
+        justify-content: center;
+    }
 }
 
 /* =========== 가로 스크롤 캐릭터 소개 부분 =============== */
