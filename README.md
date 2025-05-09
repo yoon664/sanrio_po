@@ -80,3 +80,10 @@ recruit
 
 [FOOTER] 
 그대로
+
+
+
+## 참고용!!
+https://fonts.google.com/specimen/Rubik+Spray+Paint?lang=en_Latn&categoryFilters=Feeling:%2FExpressive%2FPlayful&preview.layout=grid
+
+https://fonts.google.com/specimen/Sour+Gummy?lang=en_Latn&categoryFilters=Feeling:%2FExpressive%2FCute&preview.layout=grid
