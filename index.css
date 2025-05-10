@@ -612,8 +612,9 @@ footer {
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    justify-content: left;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     font-family: 'Noto Sans JP', sans-serif;
     color: #f44588;
     padding: 106px 80px 65px;
