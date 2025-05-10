@@ -227,8 +227,7 @@ header {
 
 /* 왼쪽 상단 영역 */
 .concept-left {
-    width: 30%;
-    max-width: 380px;
+    min-width: 400px;
     padding-top: 40px;
     position: absolute;
     top: 0;
