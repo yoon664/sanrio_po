@@ -466,7 +466,7 @@ header {
     width: 30%;
     max-width: 380px;
     padding-top: 40px;
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 40px;
     z-index: 2;
@@ -502,7 +502,8 @@ header {
 /* 이미지 설정 */
 .recruit-images {
     margin: 0 auto;
-    padding-top: 200px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     display: flex;
     justify-content: center;
     gap: 40px;
