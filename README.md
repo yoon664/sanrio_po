@@ -6,7 +6,18 @@ https://lottiefiles.com/free-animation/hamburger-Lhi7wLaPf6
 ## concept 부분 그리드로 한거 flex로 변경
 
 ## 반응형 모바일 완성할것 
-js 나중에에
+js 나중에
+@media screen and (max-width: 767px) {
+  /** Mobile */
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /** Tablet  */
+}
+
+@media all and (max-width: 1023px) {
+  /** Mobile & Tablet  */
+}
 =================================
 
 ## 가로 스크롤 js 검색해서 찾아보고 변경할것 (아래는 참고용)

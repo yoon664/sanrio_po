@@ -248,7 +248,7 @@ header {
     line-height: 1.4;
     margin-bottom: 30px;
     font-weight: 700;
-    word-break: keep-all; /* 단어 단위로 줄바꿈 처리 - 제목이 잘리지 않도록 */
+    word-break: keep-all; /* 단어 단위로 줄바꿈 처리, 제목이 잘리지 않도록 */
 }
 
 /* 중앙 이미지 영역 */
@@ -347,35 +347,6 @@ header {
     color: #fff;
 }
 
-/* 반응형 스타일 */
-@media (max-width: 1200px) {
-    .concept-inner {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .concept-left,
-    .concept-center,
-    .concept-right {
-        position: static;
-        width: 100%;
-        margin: 0 auto 40px;
-        text-align: center;
-    }
-    
-    .concept-center {
-        padding: 40px 0;
-    }
-    
-    .concept-image img {
-        max-width: 100%;
-    }
-    
-    .concept-button-wrap {
-        justify-content: center;
-    }
-}
 
 /* =========== 가로 스크롤 캐릭터 소개 부분 =============== */
 .characters-scroll {
@@ -484,7 +455,7 @@ header {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 30px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -528,7 +499,7 @@ header {
     z-index: 2;
 }
 
-/* 이미지 설정정 */
+/* 이미지 설정 */
 .recruit-images {
     margin: 0 auto;
     padding-top: 200px;
@@ -632,32 +603,6 @@ header {
     max-width: 600px;
 }
 
-/* 반응형 스타일 */
-@media (max-width: 1200px) {
-    .recruit-inner {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .recruit-left,
-    .recruit-images {
-        position: static;
-        width: 100%;
-        margin: 0 auto 40px;
-        text-align: center;
-        padding: 40px 0;
-    }
-    
-    .recruit-image-container {
-        width: 100%;
-        max-width: 420px;
-    }
-    
-    .recruit-button-wrap {
-        justify-content: center;
-    }
-}
 
 /* footer */
 footer {
@@ -729,4 +674,251 @@ footer {
     font-weight: bolder;
     color: #0067aa;
   }
-  
+
+/* ============================모바일 반응형============================  */
+@media screen and (max-width: 767px) {
+body {
+    overflow-x: hidden;
+}
+/* 헤더더 섹션 */
+.header_inner {
+    padding: 15px 20px;
+}
+.header_logo {
+    flex: 0 0 80px;
+}
+.header-nav {
+    display: none; /* 모바일에서 안보이게게 */
+}
+.nav-btn {
+    margin-left: 0;
+}
+
+/* Hero 섹션 */
+.hero {
+    flex-direction: column;
+    height: auto;
+}
+.hero-left {
+    width: 100%;
+    height: 70vh;
+}
+.hero-text {
+    left: 20px;
+    bottom: 30px;
+}
+.hero-text h1 {
+    font-size: 80px;
+}
+.hero-text p {
+    font-size: 16px;
+}
+.hero-right {
+    width: 100%;
+    flex-direction: row;
+    height: 30vh;
+}
+.hero-right img {
+    width: 50%;
+    height: 100%;
+}
+
+/* concept 섹션 */
+.concept {
+    padding: 60px 0;
+}
+.concept-inner {
+    padding: 0 20px;
+    justify-content: center;
+}
+.concept-left {
+    position: static;
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.concept-left h2 {
+    font-size: 28px;
+}
+.concept-center {
+    padding: 0;
+    margin: 0 auto 40px;
+    width: 90%;
+}
+.concept-right {
+    position: static;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 0;
+}
+.concept-description {
+    font-size: 16px;
+    line-height: 1.8;
+}
+.concept-description p br {
+    display: none;
+}
+.concept-button-wrap {
+    justify-content: center;
+}
+.concept-btn {
+    width: 80px;
+    height: 80px;
+}
+
+/* 캐릭터 스크롤 섹션 */
+.characters-scroll {
+    padding: 60px 20px;
+    height: auto;
+}
+.characters-scroll h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    padding: 30px 0;
+}
+.scroll-wrapper {
+    gap: 15px;
+    padding-bottom: 15px;
+    overflow-x: auto;
+}
+.character-card {
+    flex: 0 0 85%; /* 하나만 */
+    height: 380px;
+    padding: 15px;
+}
+.char-image {
+    height: 180px;
+}
+.char-info h3 {
+    font-size: 18px;
+    padding: 10px 0;
+}
+.char-info p {
+    font-size: 14px;
+}
+
+/* Recruit 섹션 */
+.recruit {
+    padding: 60px 0;
+}
+.recruit-inner {
+    padding: 0 20px;
+    justify-content: center;
+}
+.recruit-left {
+    position: static;
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.recruit-left h2 {
+    font-size: 28px;
+}
+.recruit-tagline {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+.recruit-images {
+    padding-top: 0;
+    flex-direction: column;
+    gap: 30px;
+}
+.recruit-image-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.recruit-image-card h4 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+.recruit-image-card p {
+    text-align: center;
+    margin-top: 10px;
+}
+.recruit-btn {
+    width: 80px;
+    height: 80px;
+}
+.recruit-footer {
+    font-size: 13px;
+}
+
+/* footer 섹션 */
+footer {
+    padding: 80px 20px 40px;
+    height: auto;
+    background-position: center bottom;
+    flex-direction: column;
+}
+.footer-info ul, 
+.footer-social ul {
+    gap: 20px;
+    justify-content: center;
+}
+.footer-social ul svg {
+    width: 40px;
+    height: 40px;
+}
+.footer-container-end {
+    margin-top: 50px;
+    text-align: center;
+}
+.footer-copyright h1 {
+    font-size: 80px;
+}
+.footer-copyright p {
+    font-size: 12px;
+}
+
+/* Mobile menu overlay - add to your HTML */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease;
+}
+.mobile-menu-overlay.active {
+    display: flex;
+}
+.mobile-menu-overlay ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.mobile-menu-overlay ul li {
+    margin: 20px 0;
+}
+.mobile-menu-overlay ul li a {
+    color: #0067aa;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 5px;
+}
+.mobile-menu-overlay ul li a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f44588;
+    transition: width 0.3s ease;
+}
+.mobile-menu-overlay ul li a:hover:after {
+    width: 100%;
+}
+}
