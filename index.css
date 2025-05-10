@@ -379,7 +379,8 @@ header {
 
 /* =========== 가로 스크롤 캐릭터 소개 부분 =============== */
 .characters-scroll {
-    padding: 40px;
+    height: 100vh;
+    padding: 80px;
     background-color: #f9f7f2;
   }
   
@@ -387,7 +388,8 @@ header {
     font-family: "Bagel Fat One", system-ui;
     text-align: center;
     font-size: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    padding: 50px 0;
     color: #f44588;
   }
   
@@ -403,11 +405,7 @@ header {
   }  
   
 .character-card {
-    flex: 0 0 calc((100% - 64px) / 4); /* 한번에 3개씩 보이게게*/
-    /* flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: calc(33.3333% - 21.3333px); */
-    /* scroll-snap-align: start; */
+    flex: 0 0 calc((100% - 64px) / 4); /* 한번에 3개씩 보이게*/
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -422,7 +420,10 @@ header {
   }
   
 .char-info {
-      text-align: center;
+    text-align: center;
+  }
+  .char-info h3 {
+    padding: 15px 0;
   }
   
 .char-image {
@@ -527,13 +528,13 @@ header {
     z-index: 2;
 }
 
-/* 이미지 그리드 */
+/* 이미지 설정정 */
 .recruit-images {
-    margin: 0 auto; 
-    padding: 250px 0;
+    margin: 0 auto;
+    padding-top: 200px;
     display: flex;
     justify-content: center;
-    gap: 100px;
+    gap: 40px;
     position: relative;
     z-index: 2;
 }
@@ -545,10 +546,6 @@ header {
     border-radius: 12px;
     transition: transform 0.3s ease;
     aspect-ratio: 2/3;
-}
-
-.recruit-image-container:hover {
-    /* transform: translateY(-10px); */
 }
 
 .recruit-image-container img {
@@ -678,7 +675,6 @@ footer {
   
 .footer-container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.1); /* 선택사항: 살짝 반투명 배경 */
     padding: 40px;
     border-radius: 12px;
   }
