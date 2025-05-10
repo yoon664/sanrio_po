@@ -667,26 +667,24 @@ footer {
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     font-family: 'Noto Sans JP', sans-serif;
     color: #f44588;
+    padding: 106px 80px 65px;
   }
   
 .footer-container {
-    text-align: center;
-    padding: 40px;
-    border-radius: 12px;
+    
   }
   
 .footer-info ul,
 .footer-social ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 20px 0;
+    margin-top: 25px;
     display: flex;
     gap: 30px;
-    justify-content: center;
     flex-wrap: wrap;
   }
   
@@ -717,15 +715,18 @@ footer {
     width: 100%;
 }
 
+.footer-container-end {
+
+}
+
 .footer-copyright h1 {
     font-family: "Bagel Fat One", system-ui;
     font-size: 180px;
     color: #0067aa;
 }
 .footer-copyright p {
-    font-size: 13px;
-    font-weight: bold;
-    color: #f44588;
-    margin-top: 20px;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #0067aa;
   }
   
