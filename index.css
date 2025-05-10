@@ -615,16 +615,27 @@ footer {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+
     font-family: 'Noto Sans JP', sans-serif;
     color: #f44588;
     padding: 106px 80px 65px;
+    position: relative;
   }
   
 .footer-container {
-    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   
-.footer-info ul,
+.footer-info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+    padding: 0;
+    list-style: none;
+}
 .footer-social ul {
     list-style: none;
     padding: 0;
@@ -662,7 +673,7 @@ footer {
 }
 
 .footer-container-end {
-
+    align-self: flex-start;
 }
 
 .footer-copyright h1 {
