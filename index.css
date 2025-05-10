@@ -446,10 +446,12 @@ header {
     width: 100%;
     height: 100%;
     background: url('img/kikilala5.png') center center/cover no-repeat;
+    transform: scale(1.05);
     filter: blur(8px);
     opacity: 0.4;
     z-index: -1;
 }
+
 
 .recruit-inner {
     width: 100%;
@@ -608,7 +610,7 @@ header {
 /* footer */
 footer {
     height: 100vh;
-    background-image: url('img/spmm11.jpg');
+    background-image: url('img/spmm111.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -633,7 +635,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 25px;
+    margin: 25px 0;
     padding: 0;
     list-style: none;
 }
@@ -651,7 +653,7 @@ footer {
     font-weight: bold;
     text-decoration: none;
     color: #f44588;
-    font-size: 14px;
+    font-size: 18px;
     transition: color 0.3s ease;
 }
 
@@ -680,12 +682,12 @@ footer {
 .footer-copyright h1 {
     font-family: "Bagel Fat One", system-ui;
     font-size: 180px;
-    color: #0067aa;
+    color: #f44588;
 }
 .footer-copyright p {
     font-size: 15px;
     font-weight: bolder;
-    color: #0067aa;
+    color: #f44588;
   }
 
 /* ============================모바일 반응형============================  */
