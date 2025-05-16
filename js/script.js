@@ -5,6 +5,34 @@ $(document).ready(function(){
 	});
 });
 
+document.getElementById("nav-icon3").addEventListener("click", function () {
+    document.querySelector(".menu-overlay").classList.toggle("active");
+  });
+
+$(document).ready(function(){
+  // Get the mobile menu overlay element
+  const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+  
+  // Toggle menu button
+  $('#nav-icon3').click(function(){
+    $(this).toggleClass('open');
+    // Toggle the mobile menu overlay
+    mobileMenuOverlay.classList.toggle('active');
+    // Prevent body scrolling when menu is open
+    if(mobileMenuOverlay.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Close menu when clicking a link
+  $('.mobile-menu-overlay a').click(function(){
+    $('#nav-icon3').removeClass('open');
+    mobileMenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
 
 // 가로 스크롤
 gsap.registerPlugin(ScrollTrigger);
