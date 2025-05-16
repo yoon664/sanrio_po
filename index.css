@@ -267,12 +267,33 @@ header {
   height: 100%;
 }
 
+
+/* 모바일 메뉴 대신 데스크톱 메뉴 토글 버튼을 표시하기 위한 미디어 쿼리 수정 */
 @media screen and (min-width: 768px) {
-  .mobile-menu-overlay {
+  /* 미디어 쿼리에서 !important 제거하고 display: none 주석 처리 */
+  /* .mobile-menu-overlay {
     display: none !important;
+  } */
+  
+  /* 데스크톱에서 메뉴 토글 버튼 표시 */
+  .desktop-menu-toggle {
+    display: block;
+  }
+  
+  /* 데스크톱 메뉴 스타일 조정 */
+  .mobile-menu-overlay {
+    /* 데스크톱에서의 스타일 조정 */
+    padding: 40px;
+  }
+  
+  .mobile-nav li a {
+    font-size: 36px;
+  }
+  
+  .mobile-contact a {
+    font-size: 18px;
   }
 }
-
 
 /* 메인 이미지 */
 .hero {

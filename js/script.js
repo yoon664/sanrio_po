@@ -13,9 +13,22 @@ $(document).ready(function(){
   // Get the mobile menu overlay element
   const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
   
-  // Toggle menu button
+  // 모바일 토글 메뉴 버튼
   $('#nav-icon3').click(function(){
     $(this).toggleClass('open');
+    // Toggle the mobile menu overlay
+    mobileMenuOverlay.classList.toggle('active');
+    // Prevent body scrolling when menu is open
+    if(mobileMenuOverlay.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // 데스크톱 토글 메뉴 버튼 - 기능 추가
+  $('.desktop-menu-toggle').click(function(){
+    $(this).toggleClass('active');
     // Toggle the mobile menu overlay
     mobileMenuOverlay.classList.toggle('active');
     // Prevent body scrolling when menu is open
@@ -29,6 +42,7 @@ $(document).ready(function(){
   // Close menu when clicking a link
   $('.mobile-menu-overlay a').click(function(){
     $('#nav-icon3').removeClass('open');
+    $('.desktop-menu-toggle').removeClass('active');
     mobileMenuOverlay.classList.remove('active');
     document.body.style.overflow = '';
   });
