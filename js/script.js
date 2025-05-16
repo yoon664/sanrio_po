@@ -9,10 +9,11 @@ $(document).ready(function(){
 // 가로 스크롤
 gsap.registerPlugin(ScrollTrigger);
 
-window.addEventListener("load", () => {
-  const scrollWrapper = document.querySelector(".scroll-wrapper");
+const scrollWrapper = document.querySelector('.scroll-wrapper');
 
-  // 실제 이미지 로딩이 끝나야 정확한 scrollWidth 확보 가능
+// 이미지 로딩이 끝난 후에 ScrollTrigger 적용
+imagesLoaded(scrollWrapper, () => {
+  ScrollTrigger.refresh(); // 레이아웃 다시 계산
   gsap.to(scrollWrapper, {
     x: () => -(scrollWrapper.scrollWidth - window.innerWidth) + "px",
     ease: "none",
@@ -27,6 +28,7 @@ window.addEventListener("load", () => {
     }
   });
 });
+
 
 
 // 마우스 왔다갔다
