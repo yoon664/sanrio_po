@@ -417,6 +417,7 @@ header {
 .character-card.pochacco:hover {background-color: #bce8e8;}
 .character-card.twin:hover {background-color: #c1bdf4;}
 
+
 .char-info {
     position: absolute;
     text-align: center;
@@ -733,7 +734,8 @@ footer {
     font-size: 15px;
     font-weight: bolder;
     color: #f44588;
-  }
+}
+
 
 /* ============================모바일 반응형============================  */
 @media screen and (max-width: 767px) {
