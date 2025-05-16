@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanrio</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -98,79 +99,94 @@
       </div>
   </section>
 
+  <!-- 
+    imgSection에 도달해서 스크롤을 어느정도하면 
+
+    <div>이미지</div> 의 opacity0 -> 1로
+  
+  -->
+  <div id="imgSection" style="position:relative;">
+
+
     <!-- 가로 스크롤!!!! -->
     <section class="characters-scroll">
         <h2>❤︎❤︎  SANRIO CHARACTERS ❤︎❤︎</h2>
         <div class="scroll-wrapper">
-            <div class="character-card zigzag">
+            <div class="character-card kitty">
                 <div class="char-image">
                   <img src="img/scroll/kitty1.png" alt="Hello Kitty" class="img-default">
                   <img src="img/scroll/kitty2.png" alt="Hello Kitty hover" class="img-hover">
+                  <div class="char-info">
+                    <h3>HELLO KITTY</h3>
+                  </div>
                 </div>
-                <div class="char-info">
-                  <h3>HELLO KITTY</h3>
-                  <p>하얀 고양이, 사랑과 우정을 상징해요.</p>
-                </div>
+                
             </div>
-          <div class="character-card">
+          <div class="character-card cinamon">
             <div class="char-image">
                 <img src="img/scroll/cinamon1.png" alt="cinamon" class="img-default">
                 <img src="img/scroll/cinamon2.png" alt="cinamon hover" class="img-hover">
+                <div class="char-info">
+                  <h3>CINNAMOROLL</h3>
+                  <!-- <p>하늘을 나는 귀여운 강아지.</p> -->
+              </div>
             </div>
-            <div class="char-info">
-                <h3>CINNAMOROLL</h3>
-                <p>하늘을 나는 귀여운 강아지.</p>
-            </div>
+            
           </div>
-          <div class="character-card">
+          <div class="character-card melody">
             <div class="char-image">
               <img src="img/scroll/melody1.png" alt="Hello Kitty" class="img-default">
               <img src="img/scroll/melody2.png" alt="Hello Kitty hover" class="img-hover">
+              <div class="char-info">
+                <h3>MY MELODY</h3>
+                <!-- <p>핑크 후드를 쓴 상냥하고 귀여운 토끼친구.</p> -->
+              </div>
             </div>
-            <div class="char-info">
-              <h3>MY MELODY</h3>
-              <p>핑크 후드를 쓴 상냥하고 귀여운 토끼친구.</p>
-            </div>
+            
         </div>
-        <div class="character-card">
+        <div class="character-card pompom">
             <div class="char-image">
               <img src="img/scroll/pompom1.png" alt="Hello Kitty" class="img-default">
               <img src="img/scroll/pompom2.png" alt="Hello Kitty hover" class="img-hover">
+              <div class="char-info">
+                <h3>POMPOMPURIN</h3>
+                <!-- <p>노란 푸딩처럼 부드러운 골든리트리버.</p> -->
+              </div>
             </div>
-            <div class="char-info">
-              <h3>POMPOMPURIN</h3>
-              <p>노란 푸딩처럼 부드러운 골든리트리버.</p>
-            </div>
+            
         </div>
-        <div class="character-card">
+        <div class="character-card kuromi">
             <div class="char-image">
               <img src="img/scroll/KUROMI1.png" alt="Hello Kitty" class="img-default">
               <img src="img/scroll/KUROMI2.png" alt="Hello Kitty hover" class="img-hover">
+              <div class="char-info">
+                <h3>KUROMI</h3>
+                <!-- <p>자칭 마이 멜로디의 라이벌.</p> -->
+              </div>
             </div>
-            <div class="char-info">
-              <h3>KUROMI</h3>
-              <p>자칭 마이 멜로디의 라이벌.</p>
-            </div>
+            
         </div>
-        <div class="character-card">
+        <div class="character-card pochacco">
             <div class="char-image">
               <img src="img/scroll/pochacco1.png" alt="Hello Kitty" class="img-default">
               <img src="img/scroll/pochacco2.png" alt="Hello Kitty hover" class="img-hover">
+              <div class="char-info">
+                <h3>POCHACCO</h3>
+                <!-- <p>산책을 좋아하는 귀여운 강아지.</p> -->
+              </div>
             </div>
-            <div class="char-info">
-              <h3>POCHACCO</h3>
-              <p>산책을 좋아하는 귀여운 강아지.</p>
-            </div>
+            
         </div>
-        <div class="character-card">
+        <div class="character-card twin">
             <div class="char-image">
               <img src="img/scroll/twin1.png" alt="Hello Kitty" class="img-default">
               <img src="img/scroll/twin2.png" alt="Hello Kitty hover" class="img-hover">
+              <div class="char-info">
+                <h3>LITTLE TWIN STARS</h3>
+                <!-- <p>별나라에서 온 쌍둥이 남매, 키키 & 라라.</p> -->
+              </div>
             </div>
-            <div class="char-info">
-              <h3>LITTLE TWIN STARS</h3>
-              <p>별나라에서 온 쌍둥이 남매, 키키 & 라라.</p>
-            </div>
+           
         </div>
         </div>
       </section>
@@ -192,40 +208,36 @@
             <!-- 중앙 이미지 -->
             <div class="recruit-images">
                 <div class="recruit-image-card">
-                    <h4 class="image-title">산리오코리아에서는<br>어떤 일을 할까요?</h4>
+                    <h4 class="image-title">산리오코리아에서는 어떤 일을 할까요?</h4>
                     <div class="recruit-image-container">
                         <img class="image-default" src="img/kuromi1nnn.png" alt="쿠로미 이미지">
                         <img class="image-hover" src="img/kuromi1n.png" alt="쿠로미 이미지 호버">
+                        <div class="mouse-follower"><a href="#" class="follower-link">직무소개</a></div>
                     </div>
-                    <p class="image-caption">직무소개</p>
                 </div>
                 <div class="recruit-image-card">
-                    <h4 class="image-title">산리오코리아에서<br>누릴 수 있는 것!</h4>
+                    <h4 class="image-title">산리오코리아에서 누릴 수 있는 것!</h4>
                     <div class="recruit-image-container">
                         <img class="image-default" src="img/pompompurin13nn.png" alt="폼폼푸린 이미지">
                         <img class="image-hover" src="img/pompompurin13n.png" alt="폼폼푸린 이미지 호버">
+                        <div class="mouse-follower"><a href="#" class="follower-link">복리후생</a></div>
                     </div>
-                    <p class="image-caption">복리후생</p>
                 </div>
             </div>
             
-            <!-- 버튼과 푸터 영역 (가운데 정렬) -->
-            <div class="recruit-buttons-footer">
-                <div class="recruit-button-wrap">
-                    <a href="#" class="recruit-btn">
-                        <span class="arrow">→</span>
-                    </a>
-                    <a href="#" class="recruit-btn2">
-                        <span class="text">RECRUIT</span>
-                    </a>
-                </div>
-                
-                <div class="recruit-footer">
-                    <p>산리오코리아와 함께 성장할 새로운 인재를 기다립니다.</p>
-                </div>
+            <!-- 버튼과 푸터 영역 (가운데 정렬) -->                
+            <div class="recruit-footer">
+                <p>산리오코리아와 함께 성장할 새로운 인재를 기다립니다.</p>
             </div>
+            
         </div>
     </section>
+
+    <!-- <div style="position:sticky">
+      단색
+      이미지
+    </div> -->
+
 
 
 
@@ -276,7 +288,9 @@
             </div>
           </div>
       </footer>
+    </div>
 
+    
       <script src="js/script.js" ></script>
 </body>
 </html>
