@@ -4,244 +4,313 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- GSAP core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- GSAP plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-        }
-
-/* CSS */
-.concept {
-    background-color: #f9f7f2;
-    padding: 80px 0;
-    font-family: 'Noto Sans KR', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+       html,
+body {
+  margin: 0;
+  height: 100%;
+  font-weight: 300;
+}
+body {
+  overflow-x: hidden;
 }
 
-.concept-inner {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
+h1,
+h2 {
+  text-align: center;
 }
 
-/* 왼쪽 상단 영역 */
-.concept-left {
-    width: 30%;
-    max-width: 380px;
-    padding-top: 40px;
-    position: absolute;
-    top: 0;
-    left: 40px;
+.full-screen {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.concept-left h3 {
-    font-family: "Bagel Fat One", system-ui;
-    font-size: 25px;
-    color: #444;
-    margin-bottom: 16px;
-    letter-spacing: 2px;
+#intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-just-black);
 }
 
-.concept-left h2 {
-    font-size: 36px;
-    line-height: 1.4;
-    margin-bottom: 30px;
-    font-weight: 700;
+#masthead {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 9999;
+}
+#masthead a {
+  padding: 1rem 2rem;
 }
 
-/* 중앙 이미지 영역 */
-.concept-center {
-    width: 40%;
-    margin: 0 auto;
-    padding: 120px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
+
+#panels #panels-container {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ddd;
+}
+#panels #panels-container .panel {
+  color: var(--color-just-black);
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #f00;
+}
+#panels #panels-container .panel img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+#panels #panels-container .panel .panels-navigation {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+#panels #panels-container .panel .anchor-panel,
+#panels #panels-container .panel .nav-panel {
+  text-transform: uppercase;
+  margin-right: 2rem;
+}
+#panels #panels-container .panels-navigation {
+  position: absolute;
+  width: 100%;
+  bottom: 2rem;
+  right: 2rem;
 }
 
-.concept-image {
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.concept-image img {
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    aspect-ratio: 2/3;
-    border-radius: 12px;
-    object-fit: cover;
-}
-
-/* 오른쪽 하단 영역 */
-.concept-right {
-    width: 30%;
-    max-width: 450px;
-    position: absolute;
-    bottom: 0;
-    right: 40px;
-    padding-bottom: 40px;
-}
-
-.concept-description {
-    color: #333;
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 30px;
-}
-
-.concept-button-wrap {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.concept-footer {
-    font-size: 14px;
-    line-height: 1.8;
-    color: #666;
-    margin-top: 40px;
-}
-
-/* 버튼 스타일 */
-.concept-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 1px solid #000;
-    text-decoration: none;
-    color: #000;
-    flex-direction: column;
-    transition: all 0.3s ease;
-}
-
-.concept-btn2 {
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    color: #444;
-    margin-left: 16px;
-    letter-spacing: 2px;
-}
-
-.concept-btn .arrow {
-    font-size: 20px;
-    margin-bottom: 6px;
-}
-
-.concept-btn .text {
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-
-.concept-btn:hover {
-    background-color: #000;
-    color: #fff;
-}
-
-/* 반응형 스타일 */
-@media (max-width: 1200px) {
-    .concept-inner {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .concept-left,
-    .concept-center,
-    .concept-right {
-        position: static;
-        width: 100%;
-        margin: 0 auto 40px;
-        text-align: center;
-    }
-    
-    .concept-center {
-        padding: 40px 0;
-    }
-    
-    .concept-image img {
-        max-width: 100%;
-    }
-    
-    .concept-button-wrap {
-        justify-content: center;
-    }
+a {
+  color: var(--color-just-black)
 }
     </style>
 </head>
 <body>
     <header>
-        
-       /* HTML */
-       <!-- 회사 소개 Section -->
-       <section class="concept">
-           <div class="concept-inner">
-               <!-- 왼쪽 상단 제목 -->
-               <div class="concept-left">
-                   <h3>❤︎ COMPANY</h3>
-                   <h2>맑고 깨끗한 강가에<br>문화를 쌓아 올리자</h2>
-               </div>
-               
-               <!-- 중앙 이미지 -->
-               <div class="concept-center">
-                   <div class="concept-image">
-                       <img src="img/hellokitty03.jpg" alt="Model photo">
-                   </div>
-               </div>
-               
-               <!-- 오른쪽 하단 내용 -->
-               <div class="concept-right">
-                   <div class="concept-description">
-                       <p>
-                           산리오라는 사명은 스페인어 San Rio에서 유래하고 있습니다.<br>
-                           San은 영어의 Saint(St.), "성스러운"을 의미하며,<br>
-                           Rio는 영어의 River, "강"을 뜻합니다.<br><br>
-                           Sanrio는 Saint River, <br>
-                           즉 "성스러운 강"이라는 의미를 지닌 사명입니다.
-                       </p>
-                   </div>
-                   
-                   <div class="concept-button-wrap">
-                       <a href="#" class="concept-btn">
-                           <span class="arrow">→</span>
-                       </a>
-                       <a href="#" class="concept-btn2">
-                           <span class="text">COMPANY</span>
-                       </a>
-                   </div>
-                   
-                   <div class="concept-footer">
-                       <p>
-                           앞으로도 그 우정을 키워가기 위해서 다양한 커뮤니케이션 수단을 제공함으로써, 온세상을 흐르는 강물과 같이, 세계 구석구석에 이르기까지 서로서로 사이 좋은 고리, 우정의 고리를 펼쳐 가고 싶습니다.
-                       </p>
-                   </div>
-               </div>
-           </div>
-       </section>
+        <div id="page" class="site">
+
+  <div id="feather" class="feather"></div>
+
+  <header id="masthead" class="site-header" role="banner">
+    <nav class="anchor-nav" role="navigation">
+      <a href="#intro" class="anchor">Home</a>
+      <a href="#panel-1" class="anchor">Panel 1</a>
+      <a href="#panel-3" class="anchor">Panel 3</a>
+      <a href="#panel-5" class="anchor">Panel 5</a>
+      <a href="#map" class="anchor">Map</a>
+    </nav>
+  </header>
+
+  <main id="content" class="site-content" role="main">
+
+    <section id="intro" class="full-screen pt-5 gradient-orange">
+      <h1>A title</h1>
+
+      <div id="clouds-layer-1" class="clouds"></div>
+      <div id="clouds-layer-2" class="clouds"></div>
+    </section>
+
+    <section id="panels">
+
+      <div id="panels-container" style="width: 500%;">
+        <article id="panel-1" class="panel full-screen gradient-green">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 1</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation text-right">
+                  <div class="nav-panel" data-sign="plus"><a href="#panel-2" class="anchor">Next</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article id="panel-2" class="panel full-screen gradient-blue">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 2</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation">
+                  <div class="nav-panel" data-sign="minus"><a href="#panel-1" class="anchor">Prev</a></div>
+                  <div class="nav-panel" data-sign="plus"><a href="#panel-3" class="anchor">Next</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article id="panel-3" class="panel full-screen gradient-green">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 3</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation">
+                  <div class="nav-panel" data-sign="minus"><a href="#panel-2" class="anchor">Prev</a></div>
+                  <div class="nav-panel" data-sign="plus"><a href="#panel-4" class="anchor">Next</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article id="panel-4" class="panel full-screen gradient-blue">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 4</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation">
+                  <div class="nav-panel" data-sign="minus"><a href="#panel-3" class="anchor">Prev</a></div>
+                  <div class="nav-panel" data-sign="plus"><a href="#panel-5" class="anchor">Next</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article id="panel-5" class="panel full-screen gradient-green">
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+
+                <img src="" alt="">
+
+              </div>
+              <div class="col-6 d-flex flex-column">
+
+                <h2>Panel 5</h2>
+
+                <p class="step-description">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Including versions of Lorem Ipsum.
+                </p>
+
+                <div class="panels-navigation text-right">
+                  <div class="nav-panel" data-sign="minus"><a href="#panel-4" class="anchor">Prev</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="map" class="full-screen gradient-orange"></section>
+
+  </main>
+
+</div>
+       
     </header>
 
-    <section style="width:100%;height:100vh;background:red;display:flex;justify-content: center;align-items: center;">01</section>
+    <!-- <section style="width:100%;height:100vh;background:red;display:flex;justify-content: center;align-items: center;">01</section>
     <section>02</section>
-    <section style="width:100%;height:100vh;background:blue;display:flex;justify-content: center;align-items: center;">03</section>
+    <section style="width:100%;height:100vh;background:blue;display:flex;justify-content: center;align-items: center;">03</section> -->
 
     <script>
-        $(document).ready(function(){
-            $('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function(){
-                $(this).toggleClass('open');
+        gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+
+        /* Main navigation */
+        let panelsSection = document.querySelector("#panels"),
+            panelsContainer = document.querySelector("#panels-container"),
+            tween;
+        document.querySelectorAll(".anchor").forEach(anchor => {
+            anchor.addEventListener("click", function(e) {
+                e.preventDefault();
+                let targetElem = document.querySelector(e.target.getAttribute("href")),
+                    y = targetElem;
+                if (targetElem && panelsContainer.isSameNode(targetElem.parentElement)) {
+                    let totalScroll = tween.scrollTrigger.end - tween.scrollTrigger.start,
+                        totalMovement = (panels.length - 1) * targetElem.offsetWidth;
+                    y = Math.round(tween.scrollTrigger.start + (targetElem.offsetLeft / totalMovement) * totalScroll);
+                }
+                gsap.to(window, {
+                    scrollTo: {
+                        y: y,
+                        autoKill: false
+                    },
+                    duration: 1
+                });
             });
+        });
+
+        /* Panels */
+        const panels = gsap.utils.toArray("#panels-container .panel");
+        tween = gsap.to(panels, {
+            xPercent: -100 * ( panels.length - 1 ),
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#panels-container",
+                pin: true,
+                start: "top top",
+                scrub: 1,
+                snap: {
+                    snapTo: 1 / (panels.length - 1),
+                    inertia: false,
+                    duration: {min: 0.1, max: 0.1}
+                },
+                end: () => "+=" + (panelsContainer.scrollWidth - window.innerWidth)
+            }
         });
     </script>
 

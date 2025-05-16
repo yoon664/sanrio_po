@@ -1,11 +1,11 @@
 # 250503
 
-## menu click animation
+## menu click animation (o)
 https://lottiefiles.com/free-animation/hamburger-Lhi7wLaPf6
 
-## concept 부분 그리드로 한거 flex로 변경
+## concept 부분 그리드로 한거 flex로 변경(o)
 
-## 반응형 모바일 완성할것 
+## 반응형 모바일 완성할것 (o)
 js 나중에
 @media screen and (max-width: 767px) {
   /** Mobile */
