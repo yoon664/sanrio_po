@@ -6,22 +6,30 @@ $(document).ready(function(){
 });
 
 
-const scrollWrapper = document.querySelector('.scroll-wrapper');
-      
-scrollWrapper.addEventListener('wheel', function (e) {
-  // 가로 스크롤을 처리
-  if (e.deltaY === 0) return;
-  e.preventDefault();
-  // 가로 스크롤 끝인지 확인
-  if (e.deltaY > 0 && scrollWrapper.scrollLeft + scrollWrapper.offsetWidth >= scrollWrapper.scrollWidth) {
-    // 세로로 이동
-    window.scrollBy(0, window.innerHeight);
-  } else {
-    // 가로 스크롤
-    scrollWrapper.scrollLeft += e.deltaY;
-  }
-}, { passive: false });
+// 가로 스크롤
+gsap.registerPlugin(ScrollTrigger);
 
+window.addEventListener("load", () => {
+  const scrollWrapper = document.querySelector(".scroll-wrapper");
+
+  // 실제 이미지 로딩이 끝나야 정확한 scrollWidth 확보 가능
+  gsap.to(scrollWrapper, {
+    x: () => -(scrollWrapper.scrollWidth - window.innerWidth) + "px",
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".characters-scroll",
+      start: "top top",
+      end: () => "+=" + scrollWrapper.scrollWidth,
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+    }
+  });
+});
+
+
+// 마우스 왔다갔다
 const containers = gsap.utils.toArray(".recruit-image-container");
 
 containers.forEach(container => {
