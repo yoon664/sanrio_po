@@ -393,8 +393,13 @@ header {
 } 
 
 .character-card p {
-    opacity: 0;
-    font-size: 25px;
+  opacity: 0;
+  font-size: 20px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.character-card:hover p {
+  opacity: 1;
+  transform: translateY(0); 
 }
   
 .character-card:hover {
