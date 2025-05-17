@@ -36,7 +36,7 @@ $(document).ready(function(){
   });
   
   // Close menu when clicking a link
-  $('.mobile-menu-overlay a').click(function(){
+  $('.menu-overlay a').click(function(){
     $('#nav-icon3').removeClass('open');
     $('.desktop-menu-toggle').removeClass('active');
     mobileMenuOverlay.classList.remove('active');
