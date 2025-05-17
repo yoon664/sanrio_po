@@ -1,175 +1,335 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>테스트용</title>
-  <link rel="stylesheet" href="ex.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .characters-scroll {
+            height: 100vh; /* 화면 높이로 변경 */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        .characters-scroll h2 {
+            font-family: "Bagel Fat One", system-ui;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 50px;
+            padding: 50px 0;
+            color: #f44588;
+        }
+        
+        .scroll-wrapper {
+            display: flex;
+            gap: 32px;
+            padding-bottom: 20px;
+            width: max-content;
+            max-width: 100%;
+            position: relative;
+            padding-left: 5%;
+            padding-right: 5%;
+            will-change: transform;
+            transition: transform 0.3s ease-out;
+        }  
+        
+        .character-card {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            min-width: 600px;
+            height: 650px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border-radius: 30px;
+        }
+
+        .character-card h3 {
+            margin-bottom: 20px;
+        } 
+
+        .character-card p {
+            opacity: 0;
+            font-size: 20px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(20px);
+        }
+
+        .character-card:hover p {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+        
+        .character-card:hover {
+            transform: translateY(-1px);
+            color: white;
+            opacity: 1;
+        }
+
+        .character-card.kitty:hover {background-color: #e03b4b;}
+        .character-card.cinamon:hover {background-color: #bcecff;}
+        .character-card.melody:hover {background-color: #ffcade;}
+        .character-card.pompom:hover {background-color: #ffe783;}
+        .character-card.kuromi:hover {background-color: #9c9b9b;}
+        .character-card.pochacco:hover {background-color: #bce8e8;}
+        .character-card.twin:hover {background-color: #c1bdf4;}
+
+        .char-info {
+            position: absolute;
+            text-align: center;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+        }
+
+        .char-info h3 {
+            text-align: center;
+            font-size: 25px;
+        }
+        
+        .char-image {
+            position: relative;
+            width: 80%;
+            height: 60%;
+            display: block;
+            margin: auto;
+            margin-top: 10%;
+        }
+        
+        .char-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .img-default {
+            opacity: 1;
+        }
+
+        .img-hover {
+            opacity: 0;
+        }
+
+        .character-card:hover .img-default {
+            opacity: 0;
+        }
+
+        .character-card:hover .img-hover {
+            opacity: 1;
+        }
+        
+        .scroll-container {
+            height: 300vh; /* 가로 스크롤 구간의 높이 */
+            position: relative;
+        }
+        
+        .section {
+            flex-shrink: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">ReWEAR</div>
-    <nav class="nav">
-      <ul>
-        <li><a href="#">CONCEPT</a></li>
-        <li><a href="#">TECHNOLOGY</a></li>
-        <li><a href="#">FRAGRANCE</a></li>
-        <li><a href="#">TOPICS</a></li>
-        <li><a href="#">SHOP LIST</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><div class="menu-icon">≡</div></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-left">
-      <img src="img/hellokitty02.jpg" alt="Model" />
-      <div class="hero-text">
-        <h1>Sanrio</h1>
-        <p>One World, Connecting Smiles</p>
-      </div>
-    </div>
-    <div class="hero-right">
-      <img src="img/pompompurin03.png" alt="Product 1" />
-      <img src="img/cinnamoroll04.jpg" alt="Product 2" />
-    </div>
-  </section>
-
-  <section class="concept">
-    <div class="concept-inner">
-        <div class="concept-left-text">
-            <h3>❤︎ COMPANY</h3>
-            <h2>맑고 깨끗한 강가에<br>문화를 쌓아 올리자</h2>
-        </div>
-        <div class="concept-image">
-            <img src="img/hellokitty03.jpg" alt="Model photo">
-        </div>
-        <div class="concept-right-text">
-            <p class="concept-description">
-                산리오라는 사명은 스페인어 San Rio에서 유래하고 있습니다.<br>
-                San은 영어의 Saint(St.), "성스러운"을 의미하며,<br>
-                Rio는 영어의 River, "강"을 뜻합니다.<br><br>
-                Sanrio는 Saint River, <br>
-                즉 "성스러운 강"이라는 의미를 지닌 사명입니다.
-            </p>
-            <div class="concept-button-wrap">
-                <a href="#" class="concept-btn">
-                    <span class="arrow">→</span>
-                </a>
-                <a href="#" class="concept-btn2">
-                    <span class="text">COMPANY</span>
-                </a>
-            </div>
-            <p class="concept-footer">
-                앞으로도 그 우정을 키워가기 위해서 다양한 커뮤니케이션 수단을 제공함으로써, 온세상을 흐르는 강물과 같이, 세계 구석구석에 이르기까지 서로서로 사이 좋은 고리, 우정의 고리를 펼쳐 가고 싶습니다.
-            </p>
-        </div>
-    </div>
-</section>
-
-<section class="characters-scroll">
-    <h2>SANRIO CHARACTERS</h2>
-    <div class="scroll-wrapper">
-        <div class="character-card zigzag">
-            <div class="char-image">
-              <img src="img/scroll/kitty1.png" alt="Hello Kitty" class="img-default">
-              <img src="img/scroll/kitty2.png" alt="Hello Kitty hover" class="img-hover">
-            </div>
-            <div class="char-info">
-              <h3>HELLO KITTY</h3>
-              <p>하얀 고양이, 사랑과 우정을 상징해요.</p>
-            </div>
-        </div>
-      <div class="character-card">
-        <div class="char-image">
-            <img src="img/scroll/cinamon1.png" alt="cinamon" class="img-default">
-            <img src="img/scroll/cinamon2.png" alt="cinamon hover" class="img-hover">
-        </div>
-        <div class="char-info">
-            <h3>CINNAMOROLL</h3>
-            <p>하늘을 나는 귀여운 강아지.</p>
-        </div>
-      </div>
-      <div class="character-card">
-        <div class="char-image">
-          <img src="img/scroll/melody1.png" alt="Hello Kitty" class="img-default">
-          <img src="img/scroll/melody2.png" alt="Hello Kitty hover" class="img-hover">
-        </div>
-        <div class="char-info">
-          <h3>MY MELODY</h3>
-          <p>핑크 후드를 쓴 토끼, 상냥하고 귀여운 친구.</p>
-        </div>
-    </div>
-    <div class="character-card">
-        <div class="char-image">
-          <img src="img/scroll/pompom1.png" alt="Hello Kitty" class="img-default">
-          <img src="img/scroll/pompom2.png" alt="Hello Kitty hover" class="img-hover">
-        </div>
-        <div class="char-info">
-          <h3>POMPOMPURIN</h3>
-          <p>노란 푸딩처럼 부드러운 골든리트리버.</p>
-        </div>
-    </div>
-    <div class="character-card">
-        <div class="char-image">
-          <img src="img/scroll/KUROMI1.png" alt="Hello Kitty" class="img-default">
-          <img src="img/scroll/KUROMI2.png" alt="Hello Kitty hover" class="img-hover">
-        </div>
-        <div class="char-info">
-          <h3>KUROMI</h3>
-          <p>자칭 마이 멜로디의 라이벌.</p>
-        </div>
-    </div>
-    <div class="character-card">
-        <div class="char-image">
-          <img src="img/scroll/pochacco1.png" alt="Hello Kitty" class="img-default">
-          <img src="img/scroll/pochacco2.png" alt="Hello Kitty hover" class="img-hover">
-        </div>
-        <div class="char-info">
-          <h3>POCHACCO</h3>
-          <p>산책을 좋아하는 귀여운 강아지예요.</p>
-        </div>
-    </div>
-    <div class="character-card">
-        <div class="char-image">
-          <img src="img/scroll/twin1.png" alt="Hello Kitty" class="img-default">
-          <img src="img/scroll/twin2.png" alt="Hello Kitty hover" class="img-hover">
-        </div>
-        <div class="char-info">
-          <h3>LITTLE TWIN STARS</h3>
-          <p>별나라에서 온 쌍둥이 남매, 키키 & 라라.</p>
-        </div>
-    </div>
-    </div>
-  </section>
-  
-  <script>
-    const scrollWrapper = document.querySelector('.scroll-wrapper');
-  
-    scrollWrapper.addEventListener('wheel', function (e) {
-      // 가로 스크롤 처리
-      if (e.deltaY === 0) return;
-      e.preventDefault();
-  
-      // 가로 스크롤 끝인지 확인
-      if (e.deltaY > 0 && scrollWrapper.scrollLeft + scrollWrapper.offsetWidth >= scrollWrapper.scrollWidth) {
-        // 세로로 이동
-        window.scrollBy(0, window.innerHeight);
-      } else {
-        // 가로 스크롤
-        scrollWrapper.scrollLeft += e.deltaY;
-      }
-    }, { passive: false });
-  </script>
-
-  
-  
-  
+    <div class="section" style="background-color: hsl(0, 70%, 50%)">SECTION 1</div>
     
+    <!-- 가로 스크롤 컨테이너 -->
+    <div class="scroll-container">
+            <section class="characters-scroll">
+  <h2>❤︎❤︎  SANRIO CHARACTERS ❤︎❤︎</h2>
+  <div class="scroll-wrapper">
+    <div class="character-card kitty">
+      <div class="char-image">
+        <img src="img/scroll/kitty1.png" alt="Hello Kitty" class="img-default">
+        <img src="img/scroll/kitty2.png" alt="Hello Kitty hover" class="img-hover">
+      </div>
+      <div class="char-info">
+        <h3>HELLO KITTY</h3>
+        <p>밝고 상냥한 고양이</p>
+      </div>
+    </div>
+    
+    <div class="character-card cinamon">
+      <div class="char-image">
+        <img src="img/scroll/cinamon1.png" alt="cinamon" class="img-default">
+        <img src="img/scroll/cinamon2.png" alt="cinamon hover" class="img-hover">
+      </div>
+      <div class="char-info">
+        <h3>CINNAMOROLL</h3>
+        <p>하늘을 나는 귀여운 강아지</p>
+      </div>
+    </div>
+    
+    <div class="character-card melody">
+      <div class="char-image">
+        <img src="img/scroll/melody1.png" alt="My Melody" class="img-default">
+        <img src="img/scroll/melody2.png" alt="My Melody hover" class="img-hover">
+      </div>
+      <div class="char-info">
+        <h3>MY MELODY</h3>
+        <p>핑크 후드를 쓴 상냥하고 귀여운 토끼친구</p>
+      </div>
+    </div>
+    
+    <div class="character-card pompom">
+      <div class="char-image">
+        <img src="img/scroll/pompom1.png" alt="Pompompurin" class="img-default">
+        <img src="img/scroll/pompom2.png" alt="Pompompurin hover" class="img-hover">
+      </div>
+      <div class="char-info">
+        <h3>POMPOMPURIN</h3>
+        <p>노란 푸딩처럼 부드러운 골든리트리버</p>
+      </div>
+    </div>
+    
+    <div class="character-card kuromi">
+      <div class="char-image">
+        <img src="img/scroll/KUROMI1.png" alt="Kuromi" class="img-default">
+        <img src="img/scroll/KUROMI2.png" alt="Kuromi hover" class="img-hover">
+      </div>
+      <div class="char-info">
+        <h3>KUROMI</h3>
+        <p>자칭 마이 멜로디의 라이벌</p>
+      </div>
+    </div>
+    
+    <div class="character-card pochacco">
+      <div class="char-image">
+        <img src="img/scroll/pochacco1.png" alt="Pochacco" class="img-default">
+        <img src="img/scroll/pochacco2.png" alt="Pochacco hover" class="img-hover">
+      </div>
+      <div class="char-info">
+        <h3>POCHACCO</h3>
+        <p>산책을 좋아하는 귀여운 강아지</p>
+      </div>
+    </div>
+    
+    <div class="character-card twin">
+      <div class="char-image">
+        <img src="img/scroll/twin1.png" alt="Little Twin Stars" class="img-default">
+        <img src="img/scroll/twin2.png" alt="Little Twin Stars hover" class="img-hover">
+      </div>
+      <div class="char-info">
+        <h3>LITTLE TWIN STARS</h3>
+        <p>별나라에서 온 쌍둥이 남매, 키키 & 라라</p>
+      </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
+    <div class="section" style="background-color: hsl(100, 70%, 50%)">SECTION 2</div>
 
-
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollContainer = document.querySelector(".scroll-container");
+    const container = document.querySelector(".characters-scroll");
+    const scrollWrapper = document.querySelector(".scroll-wrapper");
+    let isScrolling = false;
+    let lastScrollY = window.scrollY;
+    let startScrollY = 0;
+    
+    // 스크롤 컨테이너 크기 계산
+    function calculateContainerSize() {
+        // 스크롤 컨테이너 영역을 계산하기 위한 값들
+        const containerTop = scrollContainer.offsetTop;
+        const containerHeight = scrollContainer.offsetHeight;
+        
+        return {
+            top: containerTop,
+            height: containerHeight,
+            bottom: containerTop + containerHeight
+        };
+    }
+    
+    // 가로 스크롤 진행도 계산 및 적용
+    function updateHorizontalScroll() {
+        if (!container || !scrollWrapper || !scrollContainer) return;
+        
+        const containerInfo = calculateContainerSize();
+        const scrollY = window.scrollY;
+        
+        // 스크롤 컨테이너 내부인지 확인
+        const isInContainer = scrollY >= containerInfo.top && 
+                             scrollY <= containerInfo.bottom;
+        
+        if (isInContainer) {
+            // 진행도 계산 (0-1 사이 값)
+            const progress = (scrollY - containerInfo.top) / (containerInfo.height - window.innerHeight);
+            const normalizedProgress = Math.max(0, Math.min(1, progress));
+            
+            // 실제 스크롤할 수 있는 최대 너비
+            const scrollableWidth = scrollWrapper.scrollWidth - window.innerWidth;
+            const translateX = normalizedProgress * scrollableWidth;
+            
+            // 가로 스크롤 적용
+            scrollWrapper.style.transform = `translateX(-${translateX}px)`;
+        }
+    }
+    
+    // 스크롤 이벤트 처리
+    function handleScroll() {
+        if (isScrolling) return;
+        
+        isScrolling = true;
+        
+        const containerInfo = calculateContainerSize();
+        const scrollY = window.scrollY;
+        
+        // 스크롤 컨테이너 내부인지 확인
+        if (scrollY >= containerInfo.top && scrollY <= containerInfo.bottom) {
+            updateHorizontalScroll();
+            
+            // 가로 스크롤이 완료되지 않았다면 세로 스크롤 속도 조절
+            if (Math.abs(scrollY - lastScrollY) > 5) {
+                // 느린 속도로 스크롤
+                const targetY = lastScrollY + (scrollY - lastScrollY) * 0.3;
+                window.scrollTo(0, targetY);
+            }
+        }
+        
+        lastScrollY = window.scrollY;
+        
+        // 스크롤 이벤트 스로틀링
+        requestAnimationFrame(() => {
+            isScrolling = false;
+        });
+    }
+    
+    // 초기 설정
+    function initialize() {
+        // 초기 위치 설정
+        updateHorizontalScroll();
+        
+        // 이벤트 리스너
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", () => {
+            updateHorizontalScroll();
+        });
+    }
+    
+    // 초기화 실행
+    initialize();
+});
+</script>
 </body>
 </html>
