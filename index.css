@@ -426,8 +426,8 @@ header {
     width: 30%;
     min-width: 420px;
     position: absolute;
-    bottom: 0;
-    right: 70px; /* 40px에서 60px로 변경하여 왼쪽으로 20px 이동 */
+    bottom: -60px;
+    right: 70px;
     padding-bottom: 40px;
 }
 
