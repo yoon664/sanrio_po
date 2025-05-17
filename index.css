@@ -267,18 +267,9 @@ header {
   height: 100%;
 }
 
-
-/* 모바일 메뉴 대신 데스크톱 메뉴 토글 버튼을 표시하기 위한 미디어 쿼리 수정 */
-@media screen and (min-width: 768px) {
-  /* 미디어 쿼리에서 !important 제거하고 display: none 주석 처리 */
-  /* .mobile-menu-overlay {
-    display: none !important;
-  } */
-  
-  
+@media screen and (min-width: 768px) {  
   /* 데스크톱 메뉴 스타일 조정 */
-  .mobile-menu-overlay {
-    /* 데스크톱에서의 스타일 조정 */
+  .menu-overlay {
     padding: 40px;
   }
   
@@ -286,7 +277,7 @@ header {
     font-size: 36px;
   }
   
-  .mobile-contact a {
+  .menu-contact a {
     font-size: 18px;
   }
 }
