@@ -484,14 +484,13 @@ header {
 
 /* =========== 가로 스크롤 캐릭터 소개 부분 =============== */
 .characters-scroll {
-    height: 300vh;
-    overflow: hidden;
-    /* position: relative; */
+    height: 100vh; /* 화면 높이로 변경 */
     position: sticky;
-    /* padding: 80px; */
-    /* background-color: #ffffff; */
-  }
-  
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
+}
+
 .characters-scroll h2 {
     font-family: "Bagel Fat One", system-ui;
     text-align: center;
@@ -499,32 +498,33 @@ header {
     margin-bottom: 50px;
     padding: 50px 0;
     color: #f44588;
-  }
-  
+}
+
 .scroll-wrapper {
     display: flex;
-    /* overflow-x: hidden; */
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     gap: 32px;
     padding-bottom: 20px;
-    width: max-content; /* 자동으로 자식 요소 너비에 맞춰짐 */
-    /* width: 100vw; */
+    width: max-content;
     max-width: 100%;
-
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
     will-change: transform;
-    transition: transform 0.1s ease-out;
+    transition: transform 0.3s ease-out;
 }  
-  
+
 .character-card {
     position: relative;
     overflow: hidden;
     background: #fff;
     min-width: 600px;
-    height: 650px;
+
+    height: 60vh;
+    max-height: 650px;
+
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
     border-radius: 30px;
 }
 
@@ -533,15 +533,17 @@ header {
 } 
 
 .character-card p {
-  opacity: 0;
-  font-size: 20px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    font-size: 20px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(20px);
 }
+
 .character-card:hover p {
-  opacity: 1;
-  transform: translateY(0); 
+    opacity: 1;
+    transform: translateY(0); 
 }
-  
+
 .character-card:hover {
     transform: translateY(-1px);
     color: white;
@@ -559,25 +561,26 @@ header {
 .char-info {
     position: absolute;
     text-align: center;
-    position: absolute;
-    text-align: center;
-    top: 130%; 
+    top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+    width: 80%;
+}
+
 .char-info h3 {
     text-align: center;
     font-size: 25px;
 }
-  
+
 .char-image {
     position: relative;
     width: 80%;
     height: 60%;
     display: block;
     margin: auto;
-  }
-  
+    margin-top: 10%;
+}
+
 .char-image img {
     width: 100%;
     height: 100%;
@@ -604,6 +607,21 @@ header {
     opacity: 1;
 }
 
+.scroll-container {
+    height: 300vh; /* 가로 스크롤 구간의 높이 */
+    position: relative;
+}
+
+.section {
+    flex-shrink: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+}
 
 /* ========== recruit 섹션 ========== */
 .recruit {
@@ -623,7 +641,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('img/kikilala5.png') center center/cover no-repeat;
+    /* background: url('img/kikilala5.png') center center/cover no-repeat; */
     transform: scale(1.05);
     filter: blur(8px);
     opacity: 0.4;

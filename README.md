@@ -1,5 +1,3 @@
-# 250503
-
 ## menu click animation (o)
 https://lottiefiles.com/free-animation/hamburger-Lhi7wLaPf6
 
@@ -98,3 +96,7 @@ recruit
 https://fonts.google.com/specimen/Rubik+Spray+Paint?lang=en_Latn&categoryFilters=Feeling:%2FExpressive%2FPlayful&preview.layout=grid
 
 https://fonts.google.com/specimen/Sour+Gummy?lang=en_Latn&categoryFilters=Feeling:%2FExpressive%2FCute&preview.layout=grid
+
+## sticky 완성
+## 마우스 따라오는거 순수 js로 변경
+## 가로 스크롤 만들어놓은거 결합합
