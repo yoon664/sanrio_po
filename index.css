@@ -690,6 +690,12 @@ header {
 .image-title {
     text-align: center;
 }
+.image-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #444;
+}
 
 /* 이미지 설정 */
 .recruit-images {
@@ -702,14 +708,21 @@ header {
     position: relative;
     z-index: 2;
 }
+.recruit-image-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .recruit-image-container {
     position: relative;
     width: 420px;
     overflow: hidden;
     border-radius: 12px;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     aspect-ratio: 2/3;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    cursor: none; /* 기본 커서 숨기기 */
 }
 
 .recruit-image-container img {
