@@ -44,6 +44,7 @@ $(document).ready(function(){
   });
 });
 
+//////////////////////////////////////////////////////////////////
   document.addEventListener("DOMContentLoaded", function () {
     const navBtn = document.getElementById("nav-icon3");
     const menuOverlay = document.querySelector(".menu-overlay");
@@ -109,7 +110,7 @@ containers.forEach(container => {
   // 마우스 위치 추적 함수
   function updatePosition() {
     // 부드러운 추적을 위한 이징 적용
-    const ease = 0.15;
+    const ease = 0.1;
     
     // 현재 위치와 목표 위치 사이의 거리 계산
     currentX += (mouseX - currentX) * ease;
