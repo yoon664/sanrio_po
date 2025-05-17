@@ -62,27 +62,27 @@ $(document).ready(function(){
   });
 
 // 가로 스크롤
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
-const scrollWrapper = document.querySelector('.scroll-wrapper');
+// const scrollWrapper = document.querySelector('.scroll-wrapper');
 
-// 이미지 로딩이 끝난 후에 ScrollTrigger 적용
-imagesLoaded(scrollWrapper, () => {
-  ScrollTrigger.refresh(); // 레이아웃 다시 계산
-  gsap.to(scrollWrapper, {
-    x: () => -(scrollWrapper.scrollWidth - window.innerWidth) + "px",
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".characters-scroll",
-      start: "top top",
-      end: () => "+=" + scrollWrapper.scrollWidth,
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
-    }
-  });
-});
+// // 이미지 로딩이 끝난 후에 ScrollTrigger 적용
+// imagesLoaded(scrollWrapper, () => {
+//   ScrollTrigger.refresh(); // 레이아웃 다시 계산
+//   gsap.to(scrollWrapper, {
+//     x: () => -(scrollWrapper.scrollWidth - window.innerWidth) + "px",
+//     ease: "none",
+//     scrollTrigger: {
+//       trigger: ".characters-scroll",
+//       start: "top top",
+//       end: () => "+=" + scrollWrapper.scrollWidth,
+//       scrub: 1,
+//       pin: true,
+//       anticipatePin: 1,
+//       invalidateOnRefresh: true
+//     }
+//   });
+// });
 
 // 마우스 왔다갔다 2
 const containers = document.querySelectorAll(".recruit-image-container");
@@ -109,7 +109,7 @@ containers.forEach(container => {
   // 마우스 위치 추적 함수
   function updatePosition() {
     // 부드러운 추적을 위한 이징 적용
-    const ease = 0.15;
+    const ease = 0.1;
     
     // 현재 위치와 목표 위치 사이의 거리 계산
     currentX += (mouseX - currentX) * ease;

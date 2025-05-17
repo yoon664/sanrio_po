@@ -486,8 +486,8 @@ header {
 .characters-scroll {
     height: 100vh;
     overflow: hidden;position: relative;
-    padding: 80px;
-    background-color: #ffffff;
+    /* padding: 80px; */
+    /* background-color: #ffffff; */
   }
   
 .characters-scroll h2 {
