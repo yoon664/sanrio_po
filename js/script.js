@@ -63,27 +63,27 @@ $(document).ready(function(){
   });
 
 // 가로 스크롤
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
-const scrollWrapper = document.querySelector('.scroll-wrapper');
+// const scrollWrapper = document.querySelector('.scroll-wrapper');
 
-// 이미지 로딩이 끝난 후에 ScrollTrigger 적용
-imagesLoaded(scrollWrapper, () => {
-  ScrollTrigger.refresh(); // 레이아웃 다시 계산
-  gsap.to(scrollWrapper, {
-    x: () => -(scrollWrapper.scrollWidth - window.innerWidth) + "px",
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".characters-scroll",
-      start: "top top",
-      end: () => "+=" + scrollWrapper.scrollWidth,
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
-    }
-  });
-});
+// // 이미지 로딩이 끝난 후에 ScrollTrigger 적용
+// imagesLoaded(scrollWrapper, () => {
+//   ScrollTrigger.refresh(); // 레이아웃 다시 계산
+//   gsap.to(scrollWrapper, {
+//     x: () => -(scrollWrapper.scrollWidth - window.innerWidth) + "px",
+//     ease: "none",
+//     scrollTrigger: {
+//       trigger: ".characters-scroll",
+//       start: "top top",
+//       end: () => "+=" + scrollWrapper.scrollWidth,
+//       scrub: 1,
+//       pin: true,
+//       anticipatePin: 1,
+//       invalidateOnRefresh: true
+//     }
+//   });
+// });
 
 // 마우스 왔다갔다 2
 const containers = document.querySelectorAll(".recruit-image-container");
