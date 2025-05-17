@@ -44,6 +44,23 @@ $(document).ready(function(){
   });
 });
 
+  document.addEventListener("DOMContentLoaded", function () {
+    const navBtn = document.getElementById("nav-icon3");
+    const menuOverlay = document.querySelector(".menu-overlay");
+
+    navBtn.addEventListener("click", function () {
+      navBtn.classList.toggle("open");
+      menuOverlay.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".mobile-nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        navBtn.classList.remove("open");
+        menuOverlay.classList.remove("active");
+      });
+    });
+  });
+
 // 가로 스크롤
 gsap.registerPlugin(ScrollTrigger);
 
