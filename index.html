@@ -158,13 +158,13 @@
 
 <!-- 배경 이미지와 스크롤 섹션 컨테이너 -->
 <div id="imgSection" style="position:relative;height:400vh;">
-    <!-- 배경 이미지: recruit 섹션에서만 나타나도록 JavaScript로 제어됨 -->
+    <!-- 배경 이미지 -->
     <img src="img/kikilala5.png" class="sticky-img" 
          style="position:sticky;top:0; z-index:5;height: 100vh;width:100%; 
          object-fit:cover; opacity: 0; transition: opacity 0.2s ease-out;" alt="">
     
-    <!-- 가로 스크롤 컨테이너 - 새로운 구조 -->
-    <div class="scroll-container" style="position:absolute;top:0;z-index:10;height: 300vh;">
+    <!-- 가로 스크롤 컨테이너: 0vh~300vh -->
+    <div class="scroll-container" style="position:absolute;top:0;z-index:10;height:300vh;">
         <section class="characters-scroll" style="position:sticky;top:0; z-index:10;height: 100vh;">
             <h2>❤︎❤︎  SANRIO CHARACTERS ❤︎❤︎</h2>
             <div class="scroll-wrapper">
@@ -248,8 +248,8 @@
         </section>
     </div>
     
-    <!-- Recruit 섹션 -->
-    <section class="recruit" style="position:absolute;z-index:15;height: 100vh;top:200;">
+    <!-- Recruit 섹션: 300vh 지점부터 시작 -->
+    <section class="recruit" style="position:absolute;z-index:15;height: 100vh;top:300vh;">
         <div class="recruit-inner">
             <!-- 왼쪽 상단 제목 -->
             <div class="recruit-left">

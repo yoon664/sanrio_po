@@ -65,37 +65,33 @@ document.addEventListener("DOMContentLoaded", function () {
 // 가로 스크롤 시스템
 document.addEventListener("DOMContentLoaded", function () {
     const scrollContainer = document.querySelector(".scroll-container");
-    const container = document.querySelector(".characters-scroll");
     const scrollWrapper = document.querySelector(".scroll-wrapper");
-    let isScrolling = false;
-    let lastScrollY = window.scrollY;
+    const imgSection = document.getElementById("imgSection");
     
     // 스크롤 컨테이너 크기 계산
     function calculateContainerSize() {
-    if (!scrollContainer) return null;
-    
-    // 가로 스크롤 시작점을 characters-scroll 섹션으로 조정
-    const charactersSection = document.querySelector('.characters-scroll');
-    const containerTop = charactersSection.offsetTop;
-    const containerHeight = 200 * window.innerHeight / 100;
-    
-    return {
-        top: containerTop,
-        height: containerHeight,
-        bottom: containerTop + containerHeight
-    };
-}
+        if (!imgSection || !scrollContainer) return null;
+        
+        const imgSectionTop = imgSection.offsetTop;
+        const scrollContainerHeight = 300 * window.innerHeight / 100; // 300vh
+        
+        return {
+            top: imgSectionTop,
+            height: scrollContainerHeight,
+            bottom: imgSectionTop + scrollContainerHeight
+        };
+    }
     
     // 가로 스크롤 진행도 계산 및 적용
     function updateHorizontalScroll() {
-        if (!container || !scrollWrapper || !scrollContainer) return;
+        if (!scrollWrapper || !scrollContainer) return;
         
         const containerInfo = calculateContainerSize();
         if (!containerInfo) return;
         
         const scrollY = window.scrollY;
         
-        // 스크롤 컨테이너 내부인지 확인
+        // 가로 스크롤 구간 내부인지 확인 (0vh~300vh)
         const isInContainer = scrollY >= containerInfo.top && 
                              scrollY <= containerInfo.bottom;
         
@@ -115,53 +111,20 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // 스크롤 이벤트 처리
     function handleScroll() {
-        if (isScrolling) return;
-        
-        isScrolling = true;
-        
-        const containerInfo = calculateContainerSize();
-        if (!containerInfo) {
-            isScrolling = false;
-            return;
-        }
-        
-        const scrollY = window.scrollY;
-        
-        // 스크롤 컨테이너 내부인지 확인
-        if (scrollY >= containerInfo.top && scrollY <= containerInfo.bottom) {
-            updateHorizontalScroll();
-            
-            // 가로 스크롤이 완료되지 않았다면 세로 스크롤 속도 조절
-            if (Math.abs(scrollY - lastScrollY) > 5) {
-                // 느린 속도로 스크롤
-                const targetY = lastScrollY + (scrollY - lastScrollY) * 0.3;
-                window.scrollTo(0, targetY);
-            }
-        }
-        
-        lastScrollY = window.scrollY;
-        
-        // 스크롤 이벤트 스로틀링
-        requestAnimationFrame(() => {
-            isScrolling = false;
-        });
+        updateHorizontalScroll();
     }
     
     // 초기 설정
     function initialize() {
-        // 초기 위치 설정
         updateHorizontalScroll();
-        
-        // 이벤트 리스너
         window.addEventListener("scroll", handleScroll, { passive: true });
-        window.addEventListener("resize", () => {
-            updateHorizontalScroll();
-        });
+        window.addEventListener("resize", updateHorizontalScroll);
     }
     
-    // 초기화 실행
     initialize();
 });
+
+
 
 // 마우스 팔로워 (recruit 섹션)
 const containers = document.querySelectorAll(".recruit-image-container");
