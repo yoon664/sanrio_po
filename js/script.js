@@ -45,7 +45,7 @@ $(document).ready(function(){
 });
 
 //////////////////////////////////////////////////////////////////
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const navBtn = document.getElementById("nav-icon3");
     const menuOverlay = document.querySelector(".menu-overlay");
 
@@ -60,80 +60,108 @@ $(document).ready(function(){
         menuOverlay.classList.remove("active");
       });
     });
-  });
+});
 
-
-// 가로 스크롤
-function updateHorizontalScroll() {
-    if (!container || !scrollWrapper || !scrollContainer) return;
+// 새로운 가로 스크롤 시스템
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollContainer = document.querySelector(".scroll-container");
+    const container = document.querySelector(".characters-scroll");
+    const scrollWrapper = document.querySelector(".scroll-wrapper");
+    let isScrolling = false;
+    let lastScrollY = window.scrollY;
     
-    const containerInfo = calculateContainerSize();
-    const scrollY = window.scrollY;
-    
-    // 스크롤 컨테이너 내부인지 확인
-    const isInContainer = scrollY >= containerInfo.top && 
-                          scrollY <= containerInfo.bottom;
-    
-    if (isInContainer) {
-        // 진행도 계산 (0-1 사이 값)
-        const progress = (scrollY - containerInfo.top) / (containerInfo.height - window.innerHeight);
-        const normalizedProgress = Math.max(0, Math.min(1, progress));
+    // 스크롤 컨테이너 크기 계산
+    function calculateContainerSize() {
+        if (!scrollContainer) return null;
         
-        // 실제 스크롤할 수 있는 최대 너비
-        const scrollableWidth = scrollWrapper.scrollWidth - window.innerWidth;
-        const translateX = normalizedProgress * scrollableWidth;
+        const containerTop = scrollContainer.offsetTop;
+        const containerHeight = scrollContainer.offsetHeight;
         
-        // 가로 스크롤 적용
-        scrollWrapper.style.transform = `translateX(-${translateX}px)`;
+        return {
+            top: containerTop,
+            height: containerHeight,
+            bottom: containerTop + containerHeight
+        };
     }
-}
-
-// 스크롤 이벤트 처리
-function handleScroll() {
-    if (isScrolling) return;
     
-    isScrolling = true;
-    
-    const containerInfo = calculateContainerSize();
-    const scrollY = window.scrollY;
-    
-    // 스크롤 컨테이너 내부인지 확인
-    if (scrollY >= containerInfo.top && scrollY <= containerInfo.bottom) {
-        updateHorizontalScroll();
+    // 가로 스크롤 진행도 계산 및 적용
+    function updateHorizontalScroll() {
+        if (!container || !scrollWrapper || !scrollContainer) return;
         
-        // 가로 스크롤이 완료되지 않았다면 세로 스크롤 속도 조절
-        if (Math.abs(scrollY - lastScrollY) > 5) {
-            // 느린 속도로 스크롤
-            const targetY = lastScrollY + (scrollY - lastScrollY) * 0.3;
-            window.scrollTo(0, targetY);
+        const containerInfo = calculateContainerSize();
+        if (!containerInfo) return;
+        
+        const scrollY = window.scrollY;
+        
+        // 스크롤 컨테이너 내부인지 확인
+        const isInContainer = scrollY >= containerInfo.top && 
+                             scrollY <= containerInfo.bottom;
+        
+        if (isInContainer) {
+            // 진행도 계산 (0-1 사이 값)
+            const progress = (scrollY - containerInfo.top) / (containerInfo.height - window.innerHeight);
+            const normalizedProgress = Math.max(0, Math.min(1, progress));
+            
+            // 실제 스크롤할 수 있는 최대 너비
+            const scrollableWidth = scrollWrapper.scrollWidth - window.innerWidth;
+            const translateX = normalizedProgress * scrollableWidth;
+            
+            // 가로 스크롤 적용
+            scrollWrapper.style.transform = `translateX(-${translateX}px)`;
         }
     }
     
-    lastScrollY = window.scrollY;
+    // 스크롤 이벤트 처리
+    function handleScroll() {
+        if (isScrolling) return;
+        
+        isScrolling = true;
+        
+        const containerInfo = calculateContainerSize();
+        if (!containerInfo) {
+            isScrolling = false;
+            return;
+        }
+        
+        const scrollY = window.scrollY;
+        
+        // 스크롤 컨테이너 내부인지 확인
+        if (scrollY >= containerInfo.top && scrollY <= containerInfo.bottom) {
+            updateHorizontalScroll();
+            
+            // 가로 스크롤이 완료되지 않았다면 세로 스크롤 속도 조절
+            if (Math.abs(scrollY - lastScrollY) > 5) {
+                // 느린 속도로 스크롤
+                const targetY = lastScrollY + (scrollY - lastScrollY) * 0.3;
+                window.scrollTo(0, targetY);
+            }
+        }
+        
+        lastScrollY = window.scrollY;
+        
+        // 스크롤 이벤트 스로틀링
+        requestAnimationFrame(() => {
+            isScrolling = false;
+        });
+    }
     
-    // 스크롤 이벤트 스로틀링
-    requestAnimationFrame(() => {
-        isScrolling = false;
-    });
-}
-    
-// 초기 설정
-function initialize() {
-    // 초기 위치 설정
-    updateHorizontalScroll();
-    
-    // 이벤트 리스너
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", () => {
+    // 초기 설정
+    function initialize() {
+        // 초기 위치 설정
         updateHorizontalScroll();
-    });
-}
+        
+        // 이벤트 리스너
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", () => {
+            updateHorizontalScroll();
+        });
+    }
+    
+    // 초기화 실행
+    initialize();
+});
 
-// 초기화 실행
-initialize();
-
-
-// 마우스 왔다갔다 2
+// 마우스 팔로워 (recruit 섹션)
 const containers = document.querySelectorAll(".recruit-image-container");
 
 containers.forEach(container => {
@@ -239,16 +267,36 @@ containers.forEach(container => {
   });
 });
 
-
-// 배경 고정 sticky
-const image = document.querySelector('.sticky-img');
-
+// recruit 섹션 배경 이미지 제어
 window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const maxScroll = window.innerHeight; // 이미지가 다 나타날 위치
-
-  let opacity = scrollY / maxScroll;
-  if (opacity > 1) opacity = 1;
-
-  image.style.opacity = opacity;
+  const image = document.querySelector('.sticky-img');
+  const recruitSection = document.querySelector('.recruit');
+  
+  if (!image || !recruitSection) return;
+  
+  const recruitRect = recruitSection.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  
+  // recruit 섹션이 화면에 나타나기 시작할 때부터 사라질 때까지의 범위 계산
+  const sectionTop = recruitRect.top;
+  const sectionBottom = recruitRect.bottom;
+  
+  // recruit 섹션이 화면에 있을 때만 이미지 표시
+  if (sectionTop <= windowHeight && sectionBottom >= 0) {
+    // 섹션이 화면에 진입하는 정도에 따라 opacity 조절
+    let opacity = 0;
+    
+    if (sectionTop <= 0) {
+      // 섹션이 완전히 화면 위로 올라갔을 때
+      opacity = Math.max(0, Math.min(1, sectionBottom / windowHeight));
+    } else {
+      // 섹션이 화면 아래에서 올라오고 있을 때
+      opacity = Math.max(0, Math.min(1, (windowHeight - sectionTop) / windowHeight));
+    }
+    
+    image.style.opacity = opacity;
+  } else {
+    // recruit 섹션이 화면 밖에 있을 때는 이미지 숨김
+    image.style.opacity = 0;
+  }
 });
