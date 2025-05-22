@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// 새로운 가로 스크롤 시스템
+// 가로 스크롤 시스템
 document.addEventListener("DOMContentLoaded", function () {
     const scrollContainer = document.querySelector(".scroll-container");
     const container = document.querySelector(".characters-scroll");
@@ -72,17 +72,19 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // 스크롤 컨테이너 크기 계산
     function calculateContainerSize() {
-        if (!scrollContainer) return null;
-        
-        const containerTop = scrollContainer.offsetTop;
-        const containerHeight = scrollContainer.offsetHeight;
-        
-        return {
-            top: containerTop,
-            height: containerHeight,
-            bottom: containerTop + containerHeight
-        };
-    }
+    if (!scrollContainer) return null;
+    
+    // 가로 스크롤 시작점을 characters-scroll 섹션으로 조정
+    const charactersSection = document.querySelector('.characters-scroll');
+    const containerTop = charactersSection.offsetTop;
+    const containerHeight = 200 * window.innerHeight / 100;
+    
+    return {
+        top: containerTop,
+        height: containerHeight,
+        bottom: containerTop + containerHeight
+    };
+}
     
     // 가로 스크롤 진행도 계산 및 적용
     function updateHorizontalScroll() {

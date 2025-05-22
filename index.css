@@ -608,7 +608,7 @@ header {
 }
 
 .scroll-container {
-    height: 300vh; /* 가로 스크롤 구간의 높이 */
+    height: 200vh; /* 가로 스크롤 구간의 높이 */
     position: relative;
 }
 
