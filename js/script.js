@@ -63,6 +63,67 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // 가로 스크롤 시스템
+// document.addEventListener("DOMContentLoaded", function () {
+//     const scrollContainer = document.querySelector(".scroll-container");
+//     const scrollWrapper = document.querySelector(".scroll-wrapper");
+//     const imgSection = document.getElementById("imgSection");
+    
+//     // 스크롤 컨테이너 크기 계산
+//     function calculateContainerSize() {
+//         if (!imgSection || !scrollContainer) return null;
+        
+//         const imgSectionTop = imgSection.offsetTop;
+//         const scrollContainerHeight = 300 * window.innerHeight / 100; // 300vh
+        
+//         return {
+//             top: imgSectionTop,
+//             height: scrollContainerHeight,
+//             bottom: imgSectionTop + scrollContainerHeight
+//         };
+//     }
+    
+//     // 가로 스크롤 진행도 계산 및 적용
+//     function updateHorizontalScroll() {
+//         if (!scrollWrapper || !scrollContainer) return;
+        
+//         const containerInfo = calculateContainerSize();
+//         if (!containerInfo) return;
+        
+//         const scrollY = window.scrollY;
+        
+//         // 가로 스크롤 구간 내부인지 확인 (0vh~300vh)
+//         const isInContainer = scrollY >= containerInfo.top && 
+//                              scrollY <= containerInfo.bottom;
+        
+//         if (isInContainer) {
+//             // 진행도 계산 (0-1 사이 값)
+//             const progress = (scrollY - containerInfo.top) / (containerInfo.height - window.innerHeight);
+//             const normalizedProgress = Math.max(0, Math.min(1, progress));
+            
+//             // 실제 스크롤할 수 있는 최대 너비
+//             const scrollableWidth = scrollWrapper.scrollWidth - window.innerWidth;
+//             const translateX = normalizedProgress * scrollableWidth;
+            
+//             // 가로 스크롤 적용
+//             scrollWrapper.style.transform = `translateX(-${translateX}px)`;
+//         }
+//     }
+    
+//     // 스크롤 이벤트 처리
+//     function handleScroll() {
+//         updateHorizontalScroll();
+//     }
+    
+//     // 초기 설정
+//     function initialize() {
+//         updateHorizontalScroll();
+//         window.addEventListener("scroll", handleScroll, { passive: true });
+//         window.addEventListener("resize", updateHorizontalScroll);
+//     }
+    
+//     initialize();
+// });
+// 가로 스크롤 시스템
 document.addEventListener("DOMContentLoaded", function () {
     const scrollContainer = document.querySelector(".scroll-container");
     const scrollWrapper = document.querySelector(".scroll-wrapper");
@@ -73,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!imgSection || !scrollContainer) return null;
         
         const imgSectionTop = imgSection.offsetTop;
-        const scrollContainerHeight = 300 * window.innerHeight / 100; // 300vh
+        const scrollContainerHeight = 350 * window.innerHeight / 100; // 350vh로 변경
         
         return {
             top: imgSectionTop,
@@ -91,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         const scrollY = window.scrollY;
         
-        // 가로 스크롤 구간 내부인지 확인 (0vh~300vh)
+        // 가로 스크롤 구간 내부인지 확인 (0vh~350vh)
         const isInContainer = scrollY >= containerInfo.top && 
                              scrollY <= containerInfo.bottom;
         
