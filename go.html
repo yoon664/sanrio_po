@@ -90,6 +90,7 @@
             background-color: #f44588;
             transition: width 0.3s ease;
         }
+        
         .header-nav li a:hover:after {
             width: 100%;
         }
@@ -306,10 +307,11 @@
             color: #0067aa;
             font-size: 48px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 5px;
             transition: all 0.3s ease;
             display: block;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: fit-content;
         }
 
         .main-nav li a:after {
@@ -349,6 +351,7 @@
         }
 
         .menu-contact a {
+            /* font-family: "Sour Gummy", sans-serif; */
             display: block;
             color: #0067aa;
             font-size: 18px;
@@ -357,15 +360,16 @@
             transition: all 0.3s ease;
             text-align: left;
             position: relative;
-            padding-left: 20px;
+            width: fit-content;
+            padding-bottom: 4px;
         }
 
-        .menu-contact a:before {
+        .menu-contact a:after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             background-color: #f44588;
             transition: width 0.3s ease;
@@ -375,7 +379,7 @@
             color: #f44588;
         }
 
-        .menu-contact a:hover:before {
+        .menu-contact a:hover:after {
             width: 100%;
         }
 
@@ -616,17 +620,24 @@
     </section>
 
     <script>
-        $(document).ready(function() {
+$(document).ready(function() {
             // 햄버거 메뉴 토글 (열기/닫기 모두 이 버튼으로)
             $('#nav-icon3, #nav-icon3-menu').click(function() {
                 $('#nav-icon3').toggleClass('open');
                 $('.menu-overlay').toggleClass('active');
                 
-                // 스크롤 잠금
+                // 스크롤 잠금 (스크롤바 너비 보정)
                 if ($('.menu-overlay').hasClass('active')) {
-                    $('body').css('overflow', 'hidden');
+                    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                    $('body, header').css({
+                        'overflow': 'hidden',
+                        'padding-right': scrollbarWidth + 'px'
+                    });
                 } else {
-                    $('body').css('overflow', '');
+                    $('body, header').css({
+                        'overflow': '',
+                        'padding-right': ''
+                    });
                 }
             });
             
@@ -634,7 +645,10 @@
             $('.main-nav a, .menu-contact a').click(function() {
                 $('#nav-icon3').removeClass('open');
                 $('.menu-overlay').removeClass('active');
-                $('body').css('overflow', '');
+                $('body, header').css({
+                    'overflow': '',
+                    'padding-right': ''
+                });
             });
         });
     </script>
