@@ -1,0 +1,1160 @@
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Rubik+Spray+Paint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Rubik+Spray+Paint&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    max-width: 100%;
+}
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+ul {
+    list-style: none;
+}
+
+/* 헤더 */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header_inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_logo {
+    flex: 0 0 120px;
+}
+.header_logo img {
+    width: 100%;
+    height: auto;
+}
+
+.header_content {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav {
+    display: flex;
+}
+.header-nav li {
+    color: #0067aa;
+    margin-left: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.header-nav li a {
+    color: #0067aa;
+    position: relative;
+    padding-bottom: 5px;
+}
+.header-nav li a:hover {
+    color: #f44588;
+}
+.header-nav li a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f44588;
+    transition: width 0.3s ease;
+}
+.header-nav li a:hover:after {
+    width: 100%;
+}
+
+/* Nav Button */
+.nav-btn {
+    width: 60px;
+    height: 40px;
+    margin-left: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+#nav-icon3 span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 24px;
+    background: #0067aa;
+    border-radius: 3px;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+#nav-icon3 span:nth-child(1) {
+    top: 12px;
+}
+
+#nav-icon3 span:nth-child(2),
+#nav-icon3 span:nth-child(3) {
+    top: 19px;
+}
+
+#nav-icon3 span:nth-child(4) {
+    top: 26px;
+}
+
+#nav-icon3.open span {
+    background: #f44588;
+}
+
+#nav-icon3.open span:nth-child(1) {
+    top: 19px;
+    width: 0;
+    left: 50%;
+}
+
+#nav-icon3.open span:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+#nav-icon3.open span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+#nav-icon3.open span:nth-child(4) {
+    top: 19px;
+    width: 0;
+    left: 50%;
+}
+
+/* 토글 메뉴 */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.98);
+  z-index: 2000;
+  display: none;
+  padding: 30px;
+  overflow-y: auto;
+  transition: all 0.4s ease;
+}
+
+.menu-overlay.active {
+  display: block;
+}
+
+.menu-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 40px;
+}
+
+.menu-logo {
+  width: 100px;
+}
+
+.menu-logo img {
+  width: 100%;
+  height: auto;
+}
+
+.menu-contact {
+  text-align: right;
+}
+
+.menu-contact a {
+  display: block;
+  color: #0067aa;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.menu-contact a:hover {
+  color: #f44588;
+}
+
+.menu-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  padding-top: 40px;
+}
+
+.mobile-nav {
+  list-style: none;
+  padding: 0;
+}
+
+.mobile-nav li {
+  margin-bottom: 25px;
+}
+
+.mobile-nav li a {
+  font-family: "Bagel Fat One", system-ui;
+  color: #0067aa;
+  font-size: 32px;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav li a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #f44588;
+  transition: width 0.3s ease;
+}
+
+.mobile-nav li a:hover {
+  color: #f44588;
+}
+
+.mobile-nav li a:hover:after {
+  width: 100%;
+}
+
+.menu-social {
+  display: flex;
+  gap: 15px;
+}
+
+.menu-social a {
+  display: flex;
+  width: 40px;
+  height: 40px;
+}
+
+.menu-social svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 768px) {  
+  /* 데스크톱 메뉴 스타일 조정 */
+  .menu-overlay {
+    padding: 40px;
+  }
+  
+  .mobile-nav li a {
+    font-size: 36px;
+  }
+  
+  .menu-contact a {
+    font-size: 18px;
+  }
+}
+
+/* 메인 이미지 */
+.hero {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+  
+.hero-left {
+    width: 75.5%;
+    position: relative;
+}
+  
+.hero-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.hero-text {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    color: white;
+}
+  
+.hero-text h1 {
+    font-family: "Bagel Fat One", system-ui;
+    font-size: 180px;
+    color: #0067aa;
+    /* font-weight: bold; */
+}
+  
+.hero-text p {
+    font-size: 25px;
+    margin-top: 5px;
+    color: #0067aa;
+    font-weight: bold;
+
+    font-family: "Sour Gummy", sans-serif;
+    font-optical-sizing: auto;
+    /* font-weight: ; */
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+  
+.hero-right {
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+}
+  
+.hero-right img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}
+ 
+
+/* =========== 회사 소개 파트 ========== */
+.concept {
+    background-color: #f9f7f2;
+    padding: 80px 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.concept-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* 왼쪽 상단 영역 */
+.concept-left {
+    min-width: 400px;
+    padding-top: 40px;
+    position: absolute;
+    top: 0;
+    left: 40px;
+}
+
+.concept-left h3 {
+    font-family: "Bagel Fat One", system-ui;
+    font-size: 25px;
+    color: #444;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.concept-left h2 {
+    font-size: 36px;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    font-weight: 700;
+    word-break: keep-all; /* 단어 단위로 줄바꿈 처리, 제목이 잘리지 않도록 */
+}
+
+/* 중앙 이미지 영역 */
+.concept-center {
+    width: 40%;
+    margin: 0 auto;
+    margin-left: calc(25%); /* 중앙에서 왼쪽으로 20px 이동 */
+    padding: 250px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.concept-image {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.concept-image img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    aspect-ratio: 2/3;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* 오른쪽 하단 영역 */
+.concept-right {
+    width: 30%;
+    min-width: 420px;
+    position: absolute;
+    bottom: -60px;
+    right: 70px;
+    padding-bottom: 40px;
+}
+
+.concept-description {
+    color: #333;
+    font-size: 20px;
+    line-height: 2;
+    margin-bottom: 30px;
+}
+
+.concept-button-wrap {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.concept-footer {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+    margin-top: 40px;
+}
+
+/* 버튼 스타일 */
+.concept-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    text-decoration: none;
+    color: #000;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.concept-btn2 {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #444;
+    margin-left: 16px;
+    letter-spacing: 2px;
+}
+
+.concept-btn .arrow {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.concept-btn .text {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.concept-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+
+/* =========== 가로 스크롤 캐릭터 소개 부분 =============== */
+.characters-scroll {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
+
+}
+
+.characters-scroll h2 {
+    font-family: "Bagel Fat One", system-ui;
+    text-align: center;
+    font-size: 40px;
+    margin: 50px 0;
+    padding: 50px 0;
+    color: #f44588;
+}
+
+.scroll-wrapper {
+    display: flex;
+    gap: 32px;
+    padding-bottom: 20px;
+    width: max-content;
+    max-width: 100%;
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+}  
+
+.character-card {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    min-width: 600px;
+
+    height: 60vh;
+    max-height: 650px;
+
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border-radius: 30px;
+}
+
+.character-card h3 {
+    margin-bottom: 20px;
+} 
+
+.character-card p {
+    opacity: 0;
+    font-size: 20px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(20px);
+}
+
+.character-card:hover p {
+    opacity: 1;
+    transform: translateY(0); 
+}
+
+.character-card:hover {
+    transform: translateY(-1px);
+    color: white;
+    opacity: 1;
+}
+
+.character-card.kitty:hover {background-color: #e03b4b;}
+.character-card.cinamon:hover {background-color: #bcecff;}
+.character-card.melody:hover {background-color: #ffcade;}
+.character-card.pompom:hover {background-color: #ffe783;}
+.character-card.kuromi:hover {background-color: #9c9b9b;}
+.character-card.pochacco:hover {background-color: #bce8e8;}
+.character-card.twin:hover {background-color: #c1bdf4;}
+
+.char-info {
+    position: absolute;
+    text-align: center;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+.char-info h3 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.char-image {
+    position: relative;
+    width: 80%;
+    height: 60%;
+    display: block;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.char-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+}
+
+.img-default {
+    opacity: 1;
+}
+
+.img-hover {
+    opacity: 0;
+}
+
+.character-card:hover .img-default {
+    opacity: 0;
+}
+
+.character-card:hover .img-hover {
+    opacity: 1;
+}
+
+.scroll-container {
+    height: 200vh; /* 가로 스크롤 구간의 높이 */
+    position: relative;
+}
+
+.section {
+    flex-shrink: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+}
+
+/* ========== recruit 섹션 ========== */
+.recruit {
+    position: relative;
+    padding: 80px 0;
+    width: 100%;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+/* 
+.recruit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/kikilala5.png') center center/cover no-repeat;
+    transform: scale(1.05);
+    filter: blur(8px);
+    opacity: 0.4;
+    z-index: -1;
+}
+ */
+
+.recruit-inner {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* 왼쪽 상단 영역 */
+.recruit-left {
+    width: 30%;
+    max-width: 380px;
+    padding-top: 40px;
+    /* position: absolute; */
+    top: 0;
+    left: 40px;
+    z-index: 2;
+}
+
+.recruit-left h3 {
+    font-family: "Bagel Fat One", system-ui;
+    font-size: 25px;
+    color: #444;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.recruit-left h2 {
+    font-size: 36px;
+    line-height: 1.4;
+    margin-bottom: 30px;
+    font-weight: 700;
+    word-break: keep-all;
+}
+
+/* 중앙 문구 영역 */
+.recruit-tagline {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 2;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.image-title {
+    text-align: center;
+}
+.image-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* 이미지 설정 */
+.recruit-images {
+    margin: 0 auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+.recruit-image-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recruit-image-container {
+    position: relative;
+    width: 420px;
+    overflow: hidden;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    aspect-ratio: 2/3;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    cursor: none; /* 기본 커서 숨기기 */
+}
+
+.recruit-image-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+    border-radius: 12px;
+}
+
+.recruit-image-container .image-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.recruit-image-container:hover .image-default {
+    opacity: 0;
+}
+
+.recruit-image-container:hover .image-hover {
+    opacity: 1;
+}
+
+.mouse-follower {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: #fde6ece8;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease-out, background-color 0.3s ease, opacity 0.3s ease;
+  z-index: 99;
+}
+
+.follower-link {
+  color: #333;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  pointer-events: auto;
+  position: relative;
+  z-index: 99;
+  transition: transform 0.2s ease;
+}
+
+.follower-link:hover {
+  transform: scale(1.1);
+}
+
+.recruit-image-container {
+  overflow: hidden;
+  position: relative;
+  cursor: none; /* 기본 커서 숨기기 */
+}
+  
+
+/* 버튼과 푸터 영역 */
+.recruit-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+
+    font-size: 16px;
+    line-height: 1.8;
+    color: #666;
+    margin: 10px 0;
+    text-align: center;
+}
+
+
+/* footer */
+footer {
+    height: 100vh;
+    background-image: url('img/spmm111.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #f44588;
+    padding: 106px 80px 65px;
+    position: relative;
+  }
+  
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+.footer-info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 25px 0;
+    padding: 0;
+    list-style: none;
+}
+.footer-social ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+.footer-info a,
+.footer-social a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #f44588;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.footer-info li a {
+    position: relative;
+    padding-bottom: 5px;
+}
+.footer-info li a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f44588;
+    transition: width 0.3s ease;
+}
+.footer-info li a:hover:after {
+    width: 100%;
+}
+
+.footer-container-end {
+    align-self: flex-start;
+}
+
+.footer-copyright h1 {
+    font-family: "Bagel Fat One", system-ui;
+    font-size: 180px;
+    color: #f44588;
+}
+.footer-copyright p {
+    font-size: 15px;
+    font-weight: bolder;
+    color: #f44588;
+}
+
+
+/* ============================모바일 반응형============================  */
+@media screen and (max-width: 767px) {
+body {
+    overflow-x: hidden;
+}
+/* 헤더더 섹션 */
+.header_inner {
+    padding: 15px 20px;
+}
+.header_logo {
+    flex: 0 0 80px;
+}
+.header-nav {
+    display: none; /* 모바일에서 안보이게게 */
+}
+.nav-btn {
+    margin-left: 0;
+}
+
+/* Hero 섹션 */
+.hero {
+    flex-direction: column;
+    height: auto;
+}
+.hero-left {
+    width: 100%;
+    height: 70vh;
+}
+.hero-text {
+    left: 20px;
+    bottom: 30px;
+}
+.hero-text h1 {
+    font-size: 80px;
+}
+.hero-text p {
+    font-size: 16px;
+}
+.hero-right {
+    width: 100%;
+    flex-direction: row;
+    height: 30vh;
+}
+.hero-right img {
+    width: 50%;
+    height: 100%;
+}
+
+/* concept 섹션 */
+.concept {
+    padding: 60px 0;
+}
+.concept-inner {
+    padding: 0 20px;
+    justify-content: center;
+}
+.concept-left {
+    position: static;
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.concept-left h2 {
+    font-size: 28px;
+}
+.concept-center {
+    padding: 0;
+    margin: 0 auto 40px;
+    width: 90%;
+}
+.concept-right {
+    position: static;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 0;
+}
+.concept-description {
+    font-size: 16px;
+    line-height: 1.8;
+}
+.concept-description p br {
+    display: none;
+}
+.concept-button-wrap {
+    justify-content: center;
+}
+.concept-btn {
+    width: 80px;
+    height: 80px;
+}
+
+/* 캐릭터 스크롤 섹션 */
+.characters-scroll {
+    padding: 60px 20px;
+    height: auto;
+}
+.characters-scroll h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    padding: 30px 0;
+}
+.scroll-wrapper {
+    gap: 15px;
+    padding-bottom: 15px;
+    overflow-x: auto;
+}
+.character-card {
+    flex: 0 0 85%; /* 하나만 */
+    height: 380px;
+    padding: 15px;
+}
+.char-image {
+    height: 180px;
+}
+.char-info h3 {
+    font-size: 18px;
+    padding: 10px 0;
+}
+.char-info p {
+    font-size: 14px;
+}
+
+/* Recruit 섹션 */
+.recruit {
+    padding: 60px 0;
+}
+.recruit-inner {
+    padding: 0 20px;
+    justify-content: center;
+}
+.recruit-left {
+    position: static;
+    width: 100%;
+    padding-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.recruit-left h2 {
+    font-size: 28px;
+}
+.recruit-tagline {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+.recruit-images {
+    padding-top: 0;
+    flex-direction: column;
+    gap: 30px;
+}
+.recruit-image-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.recruit-image-card h4 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+.recruit-image-card p {
+    text-align: center;
+    margin-top: 10px;
+}
+.recruit-btn {
+    width: 80px;
+    height: 80px;
+}
+.recruit-footer {
+    font-size: 13px;
+}
+
+/* footer 섹션 */
+footer {
+    padding: 80px 20px 40px;
+    height: auto;
+    background-position: center bottom;
+    flex-direction: column;
+}
+.footer-info ul, 
+.footer-social ul {
+    gap: 20px;
+    justify-content: center;
+}
+.footer-social ul svg {
+    width: 40px;
+    height: 40px;
+}
+.footer-container-end {
+    margin-top: 50px;
+    text-align: center;
+}
+.footer-copyright h1 {
+    font-size: 80px;
+}
+.footer-copyright p {
+    font-size: 12px;
+}
+
+/* Mobile menu overlay - add to your HTML */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease;
+}
+.mobile-menu-overlay.active {
+    display: flex;
+}
+.mobile-menu-overlay ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+.mobile-menu-overlay ul li {
+    margin: 20px 0;
+}
+.mobile-menu-overlay ul li a {
+    color: #0067aa;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 5px;
+}
+.mobile-menu-overlay ul li a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f44588;
+    transition: width 0.3s ease;
+}
+.mobile-menu-overlay ul li a:hover:after {
+    width: 100%;
+}
+}
