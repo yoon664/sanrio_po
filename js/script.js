@@ -1,33 +1,50 @@
 $(document).ready(function() {
-    // 햄버거 메뉴 토글
+    // 메뉴 열기 버튼 (메인 헤더의 햄버거 버튼)
     $('#nav-icon3').click(function() {
-        $(this).toggleClass('open');
-        $('.menu-overlay').toggleClass('active');
+        $(this).addClass('open');
+        $('.menu-overlay').addClass('active');
         
         // 스크롤 잠금 (스크롤바 너비 보정)
-        if ($('.menu-overlay').hasClass('active')) {
-            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-            $('body, header').css({
-                'overflow': 'hidden',
-                'padding-right': scrollbarWidth + 'px'
-            });
-        } else {
-            $('body, header').css({
-                'overflow': '',
-                'padding-right': ''
-            });
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        $('body, header').css({
+            'overflow': 'hidden',
+            'padding-right': scrollbarWidth + 'px'
+        });
+    });
+    
+    // 메뉴 닫기 버튼 (오버레이 안의 X 버튼)
+    $('#nav-icon3-menu').click(function() {
+        closeMenu();
+    });
+    
+    // 메뉴 오버레이 클릭시 닫기 (배경 클릭)
+    $('.menu-overlay').click(function(e) {
+        if (e.target === this) {
+            closeMenu();
         }
     });
     
-    // 메뉴 아이템 클릭 시 닫기 (index.html 구조에 맞게 수정)
+    // 메뉴 아이템 클릭 시 닫기
     $('.mobile-nav a, .menu-contact a').click(function() {
+        closeMenu();
+    });
+    
+    // ESC 키로 닫기
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            closeMenu();
+        }
+    });
+    
+    // 메뉴 닫기 함수
+    function closeMenu() {
         $('#nav-icon3').removeClass('open');
         $('.menu-overlay').removeClass('active');
         $('body, header').css({
             'overflow': '',
             'padding-right': ''
         });
-    });
+    }
 });
 
 // 가로 스크롤 시스템
