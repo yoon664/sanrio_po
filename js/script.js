@@ -1,89 +1,32 @@
-// 햄버거 메뉴
-$(document).ready(function(){
-	$('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function(){
-		$(this).toggleClass('open');
-	});
-});
-
-$(document).ready(function(){
-  // Get the mobile menu overlay element
-  const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-  
-  // 모바일 토글 메뉴 버튼
-  $('#nav-icon3').click(function(){
-    $(this).toggleClass('open');
-    // Toggle the mobile menu overlay
-    mobileMenuOverlay.classList.toggle('active');
-    // Prevent body scrolling when menu is open
-    if(mobileMenuOverlay.classList.contains('active')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  });
-  
-  // 데스크톱 토글 메뉴 버튼 - 기능 추가
-  $('.desktop-menu-toggle').click(function(){
-    $(this).toggleClass('active');
-    // Toggle the mobile menu overlay
-    mobileMenuOverlay.classList.toggle('active');
-    // Prevent body scrolling when menu is open
-    if(mobileMenuOverlay.classList.contains('active')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  });
-  
-  // Close menu when clicking a link
-  $('.menu-overlay a').click(function(){
-    $('#nav-icon3').removeClass('open');
-    $('.desktop-menu-toggle').removeClass('active');
-    mobileMenuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-  });
-});
-
-$(document).ready(function () {
-  const $menuToggle = $('#menu-toggle');
-  const $menuOverlay = $('.menu-overlay');
-
-  $menuToggle.on('click', function () {
-    $(this).toggleClass('open');
-    $menuOverlay.toggleClass('active');
-
-    // 스크롤 잠금 처리
-    if ($menuOverlay.hasClass('active')) {
-      $('body').css('overflow', 'hidden');
-    } else {
-      $('body').css('overflow', '');
-    }
-  });
-
-  // 메뉴 안 링크 클릭 시 닫기
-  $('.menu-overlay a').on('click', function () {
-    $menuToggle.removeClass('open');
-    $menuOverlay.removeClass('active');
-    $('body').css('overflow', '');
-  });
-});
-
-
-//////////////////////////////////////////////////////////////////
-document.addEventListener("DOMContentLoaded", function () {
-    const navBtn = document.getElementById("nav-icon3");
-    const menuOverlay = document.querySelector(".menu-overlay");
-
-    navBtn.addEventListener("click", function () {
-      navBtn.classList.toggle("open");
-      menuOverlay.classList.toggle("active");
+$(document).ready(function() {
+    // 햄버거 메뉴 토글
+    $('#nav-icon3').click(function() {
+        $(this).toggleClass('open');
+        $('.menu-overlay').toggleClass('active');
+        
+        // 스크롤 잠금 (스크롤바 너비 보정)
+        if ($('.menu-overlay').hasClass('active')) {
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            $('body, header').css({
+                'overflow': 'hidden',
+                'padding-right': scrollbarWidth + 'px'
+            });
+        } else {
+            $('body, header').css({
+                'overflow': '',
+                'padding-right': ''
+            });
+        }
     });
-
-    document.querySelectorAll(".mobile-nav a").forEach(link => {
-      link.addEventListener("click", () => {
-        navBtn.classList.remove("open");
-        menuOverlay.classList.remove("active");
-      });
+    
+    // 메뉴 아이템 클릭 시 닫기 (index.html 구조에 맞게 수정)
+    $('.mobile-nav a, .menu-contact a').click(function() {
+        $('#nav-icon3').removeClass('open');
+        $('.menu-overlay').removeClass('active');
+        $('body, header').css({
+            'overflow': '',
+            'padding-right': ''
+        });
     });
 });
 
