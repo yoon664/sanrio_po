@@ -44,6 +44,31 @@ $(document).ready(function(){
   });
 });
 
+$(document).ready(function () {
+  const $menuToggle = $('#menu-toggle');
+  const $menuOverlay = $('.menu-overlay');
+
+  $menuToggle.on('click', function () {
+    $(this).toggleClass('open');
+    $menuOverlay.toggleClass('active');
+
+    // 스크롤 잠금 처리
+    if ($menuOverlay.hasClass('active')) {
+      $('body').css('overflow', 'hidden');
+    } else {
+      $('body').css('overflow', '');
+    }
+  });
+
+  // 메뉴 안 링크 클릭 시 닫기
+  $('.menu-overlay a').on('click', function () {
+    $menuToggle.removeClass('open');
+    $menuOverlay.removeClass('active');
+    $('body').css('overflow', '');
+  });
+});
+
+
 //////////////////////////////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", function () {
     const navBtn = document.getElementById("nav-icon3");

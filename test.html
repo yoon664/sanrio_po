@@ -9,15 +9,14 @@
     <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <header>
         <div class="header_inner">
             <p class="header_logo">
                 <a href="index.html">
-                    <!-- <img src="https://www.sanrio.co.jp/wp-content/themes/sanrio2022/common/images/common/header/logo.svg" alt="sanrio logo"> -->
-                     <img src="img/logo_2023.png" alt="sanrio logo">
+                  <img src="img/logo_2023.png" alt="sanrio logo">
                 </a>
             </p>
             <div class="header_content">
@@ -33,19 +32,35 @@
                   <span></span>
                   <span></span>
               </button>
-                </div>
             </div>
+          </div>
         </div>
     </header>
 
 <div class="menu-overlay">
   <div class="menu-container">
     <div class="menu-top">
-      <div class="menu-logo">
-        <a href="index.html">
-          <img src="img/logo_2023.png" alt="sanrio logo">
-        </a>
-      </div>
+      <div class="header_inner">
+            <p class="header_logo">
+                <a href="index.html">
+                  <img src="img/logo_2023.png" alt="sanrio logo">
+                </a>
+            </p>
+            <div class="header_content">
+                <ul class="header-nav">
+                    <li><a href="#">COMPANY</a></li>
+                    <li><a href="#">CHARACTER</a></li>
+                    <li><a href="#">PLACE</a></li>
+                    <li><a href="#">RECRUIT</a></li>
+                </ul>
+                <button type="button" class="nav-btn" id="nav-icon3" aria-label="Toggle menu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button>
+            </div>
+          </div>
       <div class="menu-contact">
         <a href="#">CONTACT</a>
         <a href="#">COMPANY</a>
@@ -108,239 +123,79 @@
         </div>
     </section>
 
-    <!-- 회사 소개 Section -->
-    <section class="concept">
-      <div class="concept-inner">
-          <!-- 왼쪽 상단 제목 -->
-          <div class="concept-left">
-              <h3>❤︎ COMPANY</h3>
-              <h2>맑고 깨끗한 강가에<br>성스러운 문화를 쌓아 올리자</h2>
-          </div>
-          
-          <!-- 중앙 이미지 -->
-          <div class="concept-center">
-              <div class="concept-image">
-                  <img src="img/hellokitty03.jpg" alt="Model photo">
-              </div>
-          </div>
-          
-          <!-- 오른쪽 하단 내용 -->
-          <div class="concept-right">
-              <div class="concept-description">
-                  <p>
-                      산리오라는 사명은 스페인어 San Rio에서<br>
-                      유래하고 있습니다.<br>
-                      San은 영어의 Saint(St.), "성스러운"을 의미하며,<br>
-                      Rio는 영어의 River, "강"을 뜻합니다.<br><br>
-                      Sanrio는 Saint River, <br>
-                      즉 "성스러운 강"이라는 의미를 지닌 사명입니다.
-                  </p>
-              </div>
-              
-              <div class="concept-button-wrap">
-                  <a href="#" class="concept-btn">
-                      <span class="arrow">→</span>
-                  </a>
-                  <a href="#" class="concept-btn2">
-                      <span class="text">COMPANY</span>
-                  </a>
-              </div>
-              
-              <div class="concept-footer">
-                  <p>
-                      앞으로도 그 우정을 키워가기 위해서 다양한 커뮤니케이션 수단을 제공함으로써, 온세상을 흐르는 강물과 같이, 세계 구석구석에 이르기까지 서로서로 사이 좋은 고리, 우정의 고리를 펼쳐 가고 싶습니다.
-                  </p>
-              </div>
-          </div>
-      </div>
-  </section>
 
+    <script>
+      // 햄버거 메뉴
+$(document).ready(function(){
+	$('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function(){
+		$(this).toggleClass('open');
+	});
+});
 
-<!-- 배경 이미지와 스크롤 섹션 컨테이너 -->
-<div id="imgSection" style="position:relative;height:500vh; width: 100vw;">
-    <!-- 배경 이미지 -->
-    <img src="img/kikilala5.png" class="sticky-img" 
-         style="position:sticky;top:0; z-index:5;height: 150vh;width:100%; filter: blur(5px);
-         object-fit:cover; opacity: 0; transition: opacity 0.2s ease-out;" alt="">
-    
-    <!-- 가로 스크롤 컨테이너: 0vh~350vh -->
-    <div class="scroll-container" style="position:absolute;top:0;z-index:10;height:350vh;">
-        <section class="characters-scroll" style="position:sticky;top:0; z-index:10;height: 100vh;">
-            <h2>❤︎❤︎  SANRIO CHARACTERS ❤︎❤︎</h2>
-            <div class="scroll-wrapper">
-                <div class="character-card kitty">
-                    <div class="char-image">
-                        <img src="img/scroll/kitty1.png" alt="Hello Kitty" class="img-default">
-                        <img src="img/scroll/kitty2.png" alt="Hello Kitty hover" class="img-hover">
-                    </div>
-                    <div class="char-info">
-                        <h3>HELLO KITTY</h3>
-                        <p>밝고 상냥한 고양이</p>
-                    </div>
-                </div>
-                
-                <div class="character-card cinamon">
-                    <div class="char-image">
-                        <img src="img/scroll/cinamon1.png" alt="cinamon" class="img-default">
-                        <img src="img/scroll/cinamon2.png" alt="cinamon hover" class="img-hover">
-                    </div>
-                    <div class="char-info">
-                        <h3>CINNAMOROLL</h3>
-                        <p>하늘을 나는 귀여운 강아지</p>
-                    </div>
-                </div>
-                
-                <div class="character-card melody">
-                    <div class="char-image">
-                        <img src="img/scroll/melody1.png" alt="My Melody" class="img-default">
-                        <img src="img/scroll/melody2.png" alt="My Melody hover" class="img-hover">
-                    </div>
-                    <div class="char-info">
-                        <h3>MY MELODY</h3>
-                        <p>핑크 후드를 쓴 상냥하고 귀여운 토끼친구</p>
-                    </div>
-                </div>
-                
-                <div class="character-card pompom">
-                    <div class="char-image">
-                        <img src="img/scroll/pompom1.png" alt="Pompompurin" class="img-default">
-                        <img src="img/scroll/pompom2.png" alt="Pompompurin hover" class="img-hover">
-                    </div>
-                    <div class="char-info">
-                        <h3>POMPOMPURIN</h3>
-                        <p>노란 푸딩처럼 부드러운 골든리트리버</p>
-                    </div>
-                </div>
-                
-                <div class="character-card kuromi">
-                    <div class="char-image">
-                        <img src="img/scroll/KUROMI1.png" alt="Kuromi" class="img-default">
-                        <img src="img/scroll/KUROMI2.png" alt="Kuromi hover" class="img-hover">
-                    </div>
-                    <div class="char-info">
-                        <h3>KUROMI</h3>
-                        <p>자칭 마이 멜로디의 라이벌</p>
-                    </div>
-                </div>
-                
-                <div class="character-card pochacco">
-                    <div class="char-image">
-                        <img src="img/scroll/pochacco1.png" alt="Pochacco" class="img-default">
-                        <img src="img/scroll/pochacco2.png" alt="Pochacco hover" class="img-hover">
-                    </div>
-                    <div class="char-info">
-                        <h3>POCHACCO</h3>
-                        <p>산책을 좋아하는 귀여운 강아지</p>
-                    </div>
-                </div>
-                
-                <div class="character-card twin">
-                    <div class="char-image">
-                        <img src="img/scroll/twin1.png" alt="Little Twin Stars" class="img-default">
-                        <img src="img/scroll/twin2.png" alt="Little Twin Stars hover" class="img-hover">
-                    </div>
-                    <div class="char-info">
-                        <h3>LITTLE TWIN STARS</h3>
-                        <p>별나라에서 온 쌍둥이 남매, 키키 & 라라</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    
-    <!-- Recruit 섹션: 350vh 지점부터 시작 -->
-    <section class="recruit" style="position:absolute;z-index:15;height: 150vh;top:350vh;">
-        <div class="recruit-inner">
-            <!-- 왼쪽 상단 제목 -->
-            <div class="recruit-left">
-                <h3>❤︎ RECRUIT</h3>
-                <h2>산리오코리아에서<br>인재를 찾습니다.</h2>
-            </div>
-            
-            <!-- 중앙 문구 (이미지 위쪽) -->
-            <div class="recruit-tagline">
-                캐릭터에서 시작되는 산리오의 소셜 커뮤니케이션 비즈니스
-            </div>
-            
-            <!-- 중앙 이미지 -->
-            <div class="recruit-images">
-                <div class="recruit-image-card">
-                    <h4 class="image-title">산리오코리아에서는 어떤 일을 할까요?</h4>
-                    <div class="recruit-image-container">
-                        <img class="image-default" src="img/kuromi1nnn.png" alt="쿠로미 이미지">
-                        <img class="image-hover" src="img/kuromi1n.png" alt="쿠로미 이미지 호버">
-                        <div class="mouse-follower"><a href="#" class="follower-link">직무소개</a></div>
-                    </div>
-                </div>
-                <div class="recruit-image-card">
-                    <h4 class="image-title">산리오코리아에서 누릴 수 있는 것!</h4>
-                    <div class="recruit-image-container">
-                        <img class="image-default" src="img/pompompurin13nn.png" alt="폼폼푸린 이미지">
-                        <img class="image-hover" src="img/pompompurin13n.png" alt="폼폼푸린 이미지 호버">
-                        <div class="mouse-follower"><a href="#" class="follower-link">복리후생</a></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 버튼과 푸터 영역 (가운데 정렬) -->                
-            <div class="recruit-footer">
-                <p>산리오코리아와 함께 성장할 새로운 인재를 기다립니다.</p>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-      <footer>
-        <div class="footer-container">          
-          <div class="footer-social">
-            <ul>
-              <li><a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="#f44588" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 50 50">
-                <path d="M 5.9199219 6 L 20.582031 27.375 L 6.2304688 44 L 9.4101562 44 L 21.986328 29.421875 L 31.986328 44 L 44 44 L 28.681641 21.669922 L 42.199219 6 L 39.029297 6 L 27.275391 19.617188 L 17.933594 6 L 5.9199219 6 z M 9.7167969 8 L 16.880859 8 L 40.203125 42 L 33.039062 42 L 9.7167969 8 z"></path>
-              </svg></a></li>
-                
-              <li><a href="https://www.instagram.com/sanrio_kr/">
-              <svg fill="#f44588" width="80px" height="80px" viewBox="-2 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-instagram">
-                <path d='M14.017 0h-8.07A5.954 5.954 0 0 0 0 5.948v8.07a5.954 5.954 0 0 0 5.948 5.947h8.07a5.954 5.954 0 0 0 5.947-5.948v-8.07A5.954 5.954 0 0 0 14.017 0zm3.94 14.017a3.94 3.94 0 0 1-3.94 3.94h-8.07a3.94 3.94 0 0 1-3.939-3.94v-8.07a3.94 3.94 0 0 1 3.94-3.939h8.07a3.94 3.94 0 0 1 3.939 3.94v8.07z'/>
-                <path d='M9.982 4.819A5.17 5.17 0 0 0 4.82 9.982a5.17 5.17 0 0 0 5.163 5.164 5.17 5.17 0 0 0 5.164-5.164A5.17 5.17 0 0 0 9.982 4.82zm0 8.319a3.155 3.155 0 1 1 0-6.31 3.155 3.155 0 0 1 0 6.31z'/>\
-                <circle cx='15.156' cy='4.858' r='1.237'/>
-              </svg></a></li>
-              
-                <li><a href="https://www.youtube.com/c/sanriokorea/featured">
-                <svg width="80px" height="80px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
-                  <path fill="#f44588" d="M14.712 4.633a1.754 1.754 0 00-1.234-1.234C12.382 3.11 8 3.11 8 3.11s-4.382 0-5.478.289c-.6.161-1.072.634-1.234 1.234C1 5.728 1 8 1 8s0 2.283.288 3.367c.162.6.635 1.073 1.234 1.234C3.618 12.89 8 12.89 8 12.89s4.382 0 5.478-.289a1.754 1.754 0 001.234-1.234C15 10.272 15 8 15 8s0-2.272-.288-3.367z"/>
-                  <path fill="#ffffff" d="M6.593 10.11l3.644-2.098-3.644-2.11v4.208z"/>
-                </svg></a></li>
-
-                <li><a href="#">
-                <svg fill="#f44588" width="80px" height="80px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10,17.55,8.23,19.27a2.47,2.47,0,0,1-3.5-3.5l4.54-4.55a2.46,2.46,0,0,1,3.39-.09l.12.1a1,1,0,0,0,1.4-1.43A2.75,2.75,0,0,0,14,9.59a4.46,4.46,0,0,0-6.09.22L3.31,14.36a4.48,4.48,0,0,0,6.33,6.33L11.37,19A1,1,0,0,0,10,17.55ZM20.69,3.31a4.49,4.49,0,0,0-6.33,0L12.63,5A1,1,0,0,0,14,6.45l1.73-1.72a2.47,2.47,0,0,1,3.5,3.5l-4.54,4.55a2.46,2.46,0,0,1-3.39.09l-.12-.1a1,1,0,0,0-1.4,1.43,2.75,2.75,0,0,0,.23.21,4.47,4.47,0,0,0,6.09-.22l4.55-4.55A4.49,4.49,0,0,0,20.69,3.31Z"/>
-                </svg></a></li>
-            </ul>
-          </div>        
-      
-            <div class="footer-info">
-              <ul>
-                <li><a href="#">COMPANY</a></li>
-                <li><a href="#">CHARACTER</a></li>
-                <li><a href="#">PLACE</a></li>
-                <li><a href="#">RECRUIT</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="footer-container-end">
-            <div class="footer-copyright">
-              <h1>Sanrio</h1>
-              <p>&copy; 2025 Sanrio All rights reserved.</p>
-            </div>
-          </div>
-      </footer>
-      
+$(document).ready(function(){
+  // Get the mobile menu overlay element
+  const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
   
+  // 모바일 토글 메뉴 버튼
+  $('#nav-icon3').click(function(){
+    $(this).toggleClass('open');
+    // Toggle the mobile menu overlay
+    mobileMenuOverlay.classList.toggle('active');
+    // Prevent body scrolling when menu is open
+    if(mobileMenuOverlay.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // 데스크톱 토글 메뉴 버튼 - 기능 추가
+  $('.desktop-menu-toggle').click(function(){
+    $(this).toggleClass('active');
+    // Toggle the mobile menu overlay
+    mobileMenuOverlay.classList.toggle('active');
+    // Prevent body scrolling when menu is open
+    if(mobileMenuOverlay.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Close menu when clicking a link
+  $('.menu-overlay a').click(function(){
+    $('#nav-icon3').removeClass('open');
+    $('.desktop-menu-toggle').removeClass('active');
+    mobileMenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
 
-    
-      <script src="js/script.js" ></script>
-</body>
+$(document).ready(function () {
+  const $menuToggle = $('#menu-toggle');
+  const $menuOverlay = $('.menu-overlay');
+
+  $menuToggle.on('click', function () {
+    $(this).toggleClass('open');
+    $menuOverlay.toggleClass('active');
+
+    // 스크롤 잠금 처리
+    if ($menuOverlay.hasClass('active')) {
+      $('body').css('overflow', 'hidden');
+    } else {
+      $('body').css('overflow', '');
+    }
+  });
+
+  // 메뉴 안 링크 클릭 시 닫기
+  $('.menu-overlay a').on('click', function () {
+    $menuToggle.removeClass('open');
+    $menuOverlay.removeClass('active');
+    $('body').css('overflow', '');
+  });
+});
+
+    </script>
+
+  </body>
 </html>
