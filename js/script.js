@@ -119,6 +119,8 @@ containers.forEach(container => {
   const hoverImage = container.querySelector(".image-hover");
   const defaultImage = container.querySelector(".image-default");
   
+  let isHovering = false;
+  
   // 마우스 팔로워 초기 설정
   gsap.set(follower, {
     xPercent: -50,
@@ -127,92 +129,74 @@ containers.forEach(container => {
     opacity: 0
   });
   
-  // 자연스러운 움직임을 위한 변수
-  let mouseX = 0;
-  let mouseY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  
-  // 마우스 위치 추적 함수
-  function updatePosition() {
-    // 부드러운 추적을 위한 이징 적용
-    const ease = 0.1;
-    
-    // 현재 위치와 목표 위치 사이의 거리 계산
-    currentX += (mouseX - currentX) * ease;
-    currentY += (mouseY - currentY) * ease;
-    
-    // 팔로워 위치 업데이트
-    gsap.set(follower, {
-      x: currentX,
-      y: currentY
-    });
-    
-    // 애니메이션 프레임 요청
-    requestAnimationFrame(updatePosition);
-  }
-  
-  // 애니메이션 프레임 시작
-  updatePosition();
-  
   // 마우스 진입 이벤트
   container.addEventListener("mouseenter", (e) => {
-    // 현재 마우스 위치로 초기값 설정 (튀는 현상 방지)
-    mouseX = e.offsetX;
-    mouseY = e.offsetY;
-    currentX = e.offsetX;
-    currentY = e.offsetY;
+    isHovering = true;
+    
+    // 팔로워를 현재 마우스 위치로 즉시 이동 (튀는 현상 방지)
+    gsap.set(follower, {
+      x: e.offsetX,
+      y: e.offsetY
+    });
     
     // 팔로워 표시 애니메이션
     gsap.to(follower, {
       scale: 1,
       opacity: 1,
-      duration: 0.4,
-      ease: "power2.out"
+      duration: 0.3,
+      ease: "back.out(1.2)"
     });
     
     // 이미지 전환 애니메이션
     gsap.to(hoverImage, {
       opacity: 1,
-      duration: 0.5,
-      ease: "power1.inOut"
+      duration: 0.4,
+      ease: "power2.out"
     });
     
     gsap.to(defaultImage, {
       opacity: 0,
-      duration: 0.5,
-      ease: "power1.inOut"
+      duration: 0.4,
+      ease: "power2.out"
     });
   });
   
   // 마우스 이동 이벤트
   container.addEventListener("mousemove", (e) => {
-    // 목표 위치 업데이트
-    mouseX = e.offsetX;
-    mouseY = e.offsetY;
+    if (!isHovering) return;
+    
+    // GSAP를 사용한 부드러운 팔로우 애니메이션
+    gsap.to(follower, {
+      x: e.offsetX,
+      y: e.offsetY,
+      duration: 0.2,
+      ease: "power2.out"
+    });
   });
   
   // 마우스 이탈 이벤트
   container.addEventListener("mouseleave", () => {
+    isHovering = false;
+    
     // 팔로워 숨김 애니메이션
     gsap.to(follower, {
       scale: 0,
       opacity: 0,
-      duration: 0.3,
+      duration: 0.2,
       ease: "power2.in"
     });
     
     // 이미지 원상복귀 애니메이션
     gsap.to(hoverImage, {
       opacity: 0,
-      duration: 0.4,
-      ease: "power1.inOut"
+      duration: 0.3,
+      ease: "power2.in"
     });
     
     gsap.to(defaultImage, {
       opacity: 1,
-      duration: 0.4,
-      ease: "power1.inOut"
+      duration: 0.3,
+      ease: "power2.in"
     });
   });
 });
