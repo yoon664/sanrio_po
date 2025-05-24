@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// 마우스 팔로워 (recruit 섹션)
+// 마우스 팔로워 (recruit 섹션) - 이벤트 버블링 해결 버전
 const containers = document.querySelectorAll(".recruit-image-container");
 
 containers.forEach(container => {
@@ -126,7 +126,7 @@ containers.forEach(container => {
   let currentX = 0;
   let currentY = 0;
   
-  // container를 relative로 설정 (follower의 absolute 기준점)
+  // container를 relative로 설정
   container.style.position = 'relative';
   
   // 마우스 팔로워 초기 설정
@@ -136,26 +136,35 @@ containers.forEach(container => {
   follower.style.transform = 'translate(-50%, -50%) scale(0)';
   follower.style.opacity = '0';
   follower.style.transition = 'opacity 0.3s ease';
-  follower.style.pointerEvents = 'none';
+  follower.style.pointerEvents = 'none'; // 중요: 마우스 이벤트 차단
   follower.style.zIndex = '99';
   
   // 부드러운 애니메이션 함수
   function smoothFollow() {
-    if (!isHovering) return;
+    if (!isHovering) {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+      return;
+    }
     
-    const ease = 0.15;
+    const ease = 0.12;
     
     // 현재 위치와 목표 위치의 차이 계산
     const deltaX = targetX - currentX;
     const deltaY = targetY - currentY;
     
     // 차이가 충분히 작으면 정확한 위치로 설정
-    if (Math.abs(deltaX) < 0.3 && Math.abs(deltaY) < 0.3) {
+    if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) {
       currentX = targetX;
       currentY = targetY;
       follower.style.left = `${currentX}px`;
       follower.style.top = `${currentY}px`;
       follower.style.transform = 'translate(-50%, -50%) scale(1)';
+      
+      // 애니메이션 계속 실행 (마우스 움직임 대기)
+      animationId = requestAnimationFrame(smoothFollow);
       return;
     }
     
@@ -174,15 +183,14 @@ containers.forEach(container => {
   
   // 마우스 진입 이벤트
   container.addEventListener("mouseenter", (e) => {
-    console.log('Mouse enter detected'); // 디버깅용
+    if (isHovering) return; // 이미 hover 상태면 무시
+    
     isHovering = true;
     
-    // 현재 마우스 위치 계산 (container 기준)
+    // 현재 마우스 위치 계산
     const rect = container.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
-    
-    console.log('Mouse position:', mouseX, mouseY); // 디버깅용
     
     // 즉시 설정
     targetX = mouseX;
@@ -190,7 +198,7 @@ containers.forEach(container => {
     currentX = mouseX;
     currentY = mouseY;
     
-    // 팔로워 즉시 위치 설정
+    // 팔로워 즉시 위치 설정 및 표시
     follower.style.left = `${currentX}px`;
     follower.style.top = `${currentY}px`;
     follower.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -206,14 +214,14 @@ containers.forEach(container => {
     if (animationId) {
       cancelAnimationFrame(animationId);
     }
-    smoothFollow();
+    animationId = requestAnimationFrame(smoothFollow);
   });
   
   // 마우스 이동 이벤트
   container.addEventListener("mousemove", (e) => {
     if (!isHovering) return;
     
-    // 마우스 위치 계산 (container 기준)
+    // 마우스 위치 계산
     const rect = container.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
@@ -223,24 +231,33 @@ containers.forEach(container => {
     targetY = mouseY;
   });
   
-  // 마우스 이탈 이벤트
-  container.addEventListener("mouseleave", () => {
-    console.log('Mouse leave detected'); // 디버깅용
-    isHovering = false;
+  // 마우스 이탈 이벤트 (더 안정적으로)
+  container.addEventListener("mouseleave", (e) => {
+    // 실제로 container를 벗어났는지 확인
+    const rect = container.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
     
-    // 애니메이션 중단
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-      animationId = null;
+    // container 영역을 실제로 벗어났을 때만 처리
+    if (mouseX < 0 || mouseX > container.offsetWidth || 
+        mouseY < 0 || mouseY > container.offsetHeight) {
+      
+      isHovering = false;
+      
+      // 애니메이션 중단
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+      
+      // 팔로워 숨김
+      follower.style.opacity = '0';
+      follower.style.transform = 'translate(-50%, -50%) scale(0)';
+      
+      // 이미지 원상복귀
+      hoverImage.style.opacity = '0';
+      defaultImage.style.opacity = '1';
     }
-    
-    // 팔로워 숨김
-    follower.style.opacity = '0';
-    follower.style.transform = 'translate(-50%, -50%) scale(0)';
-    
-    // 이미지 원상복귀
-    hoverImage.style.opacity = '0';
-    defaultImage.style.opacity = '1';
   });
 });
 
