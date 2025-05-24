@@ -1295,4 +1295,8 @@ footer {
 .mobile-menu-overlay ul li a:hover:after {
     width: 100%;
 }
+
+.character-card {
+    min-width: 90vw;
+}
 }

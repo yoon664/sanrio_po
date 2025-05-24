@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const normalizedProgress = Math.max(0, Math.min(1, progress));
             
             // 실제 스크롤할 수 있는 최대 너비
-            const scrollableWidth = scrollWrapper.scrollWidth - window.innerWidth;
+            const scrollableWidth = scrollWrapper.scrollWidth - window.innerWidth + 50;
             const translateX = normalizedProgress * scrollableWidth;
             
             // 가로 스크롤 적용
