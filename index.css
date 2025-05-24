@@ -34,7 +34,7 @@ header {
 }
 
 .header_inner {
-    max-width: 1400px;
+    /* max-width: 1400px; */
     margin: 0 auto;
     padding: 20px 40px;
     display: flex;
@@ -666,7 +666,7 @@ header {
     position: relative;
     overflow: hidden;
     background: #fff;
-    min-width: 600px;
+    min-width: 30vw;
 
     height: 60vh;
     max-height: 650px;
@@ -848,12 +848,11 @@ header {
 
 .image-title {
     text-align: center;
-}
-.image-title {
     text-align: center;
     margin-bottom: 15px;
     font-weight: 600;
     color: #444;
+    font-size:20px
 }
 
 /* 이미지 설정 */
@@ -1159,13 +1158,9 @@ body {
 .scroll-wrapper {
     gap: 15px;
     padding-bottom: 15px;
-    overflow-x: auto;
+    /* overflow-x: auto; */
 }
-.character-card {
-    flex: 0 0 85%; /* 하나만 */
-    height: 380px;
-    padding: 15px;
-}
+
 .char-image {
     height: 180px;
 }
