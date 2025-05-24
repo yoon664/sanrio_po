@@ -111,7 +111,188 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// 마우스 팔로워 (recruit 섹션) - 이벤트 버블링 해결 버전
+// 마우스 팔로워 (recruit 섹션) - 간단하고 안정적인 버전
+const containers = document.querySelectorAll(".recruit-image-container");
+
+containers.forEach(container => {
+  const follower = container.querySelector(".mouse-follower");
+  const hoverImage = container.querySelector(".image-hover");
+  const defaultImage = container.querySelector(".image-default");
+  
+  let isHovering = false;
+  let animationId = null;
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let leaveTimeout = null;
+  
+  // container를 relative로 설정
+  container.style.position = 'relative';
+  
+  // 마우스 팔로워 초기 설정
+  follower.style.position = 'absolute';
+  follower.style.left = '0px';
+  follower.style.top = '0px';
+  follower.style.transform = 'translate(-50%, -50%) scale(0)';
+  follower.style.opacity = '0';
+  follower.style.transition = 'opacity 0.3s ease';
+  follower.style.pointerEvents = 'none';
+  follower.style.zIndex = '99';
+  
+  // 부드러운 애니메이션 함수
+  function smoothFollow() {
+    if (!isHovering) {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      }
+      return;
+    }
+    
+    const ease = 0.12;
+    
+    // 현재 위치와 목표 위치의 차이 계산
+    const deltaX = targetX - currentX;
+    const deltaY = targetY - currentY;
+    
+    // 차이가 충분히 작으면 정확한 위치로 설정
+    if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) {
+      currentX = targetX;
+      currentY = targetY;
+      follower.style.left = `${currentX}px`;
+      follower.style.top = `${currentY}px`;
+      follower.style.transform = 'translate(-50%, -50%) scale(1)';
+      
+      // 애니메이션 계속 실행
+      animationId = requestAnimationFrame(smoothFollow);
+      return;
+    }
+    
+    // 부드럽게 따라가기
+    currentX += deltaX * ease;
+    currentY += deltaY * ease;
+    
+    // 위치 업데이트
+    follower.style.left = `${currentX}px`;
+    follower.style.top = `${currentY}px`;
+    follower.style.transform = 'translate(-50%, -50%) scale(1)';
+    
+    // 다음 프레임 요청
+    animationId = requestAnimationFrame(smoothFollow);
+  }
+  
+  // 팔로워 정리 함수
+  function cleanupFollower() {
+    isHovering = false;
+    
+    // 애니메이션 중단
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+    
+    // 팔로워 숨김
+    follower.style.opacity = '0';
+    follower.style.transform = 'translate(-50%, -50%) scale(0)';
+    
+    // 이미지 원상복귀
+    hoverImage.style.opacity = '0';
+    defaultImage.style.opacity = '1';
+  }
+  
+  // 마우스 진입 이벤트
+  container.addEventListener("mouseenter", (e) => {
+    // 기존 leave 타이머 취소
+    if (leaveTimeout) {
+      clearTimeout(leaveTimeout);
+      leaveTimeout = null;
+    }
+    
+    if (isHovering) return;
+    
+    isHovering = true;
+    
+    // 현재 마우스 위치 계산
+    const rect = container.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    // 즉시 설정
+    targetX = mouseX;
+    targetY = mouseY;
+    currentX = mouseX;
+    currentY = mouseY;
+    
+    // 팔로워 즉시 위치 설정 및 표시
+    follower.style.left = `${currentX}px`;
+    follower.style.top = `${currentY}px`;
+    follower.style.transform = 'translate(-50%, -50%) scale(1)';
+    follower.style.opacity = '1';
+    
+    // 이미지 전환
+    hoverImage.style.transition = 'opacity 0.4s ease';
+    defaultImage.style.transition = 'opacity 0.4s ease';
+    hoverImage.style.opacity = '1';
+    defaultImage.style.opacity = '0';
+    
+    // 부드러운 팔로우 시작
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+    animationId = requestAnimationFrame(smoothFollow);
+  });
+  
+  // 마우스 이동 이벤트
+  container.addEventListener("mousemove", (e) => {
+    if (!isHovering) return;
+    
+    // 마우스 위치 계산
+    const rect = container.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    // 목표 위치 업데이트
+    targetX = mouseX;
+    targetY = mouseY;
+  });
+  
+  // 마우스 이탈 이벤트 (지연 처리)
+  container.addEventListener("mouseleave", (e) => {
+    // 기존 타이머가 있으면 클리어
+    if (leaveTimeout) {
+      clearTimeout(leaveTimeout);
+    }
+    
+    // 짧은 지연 후 정리 (빠른 이동 시 대응)
+    leaveTimeout = setTimeout(() => {
+      // 마우스가 다른 recruit-image-container에 있는지 확인
+      const allContainers = document.querySelectorAll('.recruit-image-container');
+      let isOverOtherContainer = false;
+      
+      // 현재 마우스 위치 가져오기
+      const currentMouseX = window.event ? window.event.clientX : 0;
+      const currentMouseY = window.event ? window.event.clientY : 0;
+      
+      allContainers.forEach(otherContainer => {
+        if (otherContainer === container) return;
+        
+        const rect = otherContainer.getBoundingClientRect();
+        if (currentMouseX >= rect.left && currentMouseX <= rect.right &&
+            currentMouseY >= rect.top && currentMouseY <= rect.bottom) {
+          isOverOtherContainer = true;
+        }
+      });
+      
+      // 다른 container 위에 있지 않으면 정리
+      if (!isOverOtherContainer) {
+        cleanupFollower();
+      }
+    }, 100); // 100ms 지연
+  });
+});
+
+/*
 const containers = document.querySelectorAll(".recruit-image-container");
 
 containers.forEach(container => {
@@ -260,6 +441,8 @@ containers.forEach(container => {
     }
   });
 });
+*/
+
 
 // recruit 섹션 배경 이미지 제어
 window.addEventListener('scroll', () => {
