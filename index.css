@@ -782,21 +782,6 @@ header {
     display: flex;
     align-items: center;
 }
-/* 
-.recruit::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('img/kikilala5.png') center center/cover no-repeat;
-    transform: scale(1.05);
-    filter: blur(8px);
-    opacity: 0.4;
-    z-index: -1;
-}
- */
 
 .recruit-inner {
     width: 100%;
@@ -805,17 +790,16 @@ header {
     padding: 0 30px;
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; /* 세로 배치로 변경 */
+    align-items: flex-start; /* 왼쪽 정렬 */
 }
 
 /* 왼쪽 상단 영역 */
 .recruit-left {
-    width: 30%;
+    width: 100%;
     max-width: 380px;
     padding-top: 40px;
-    /* position: absolute; */
-    top: 0;
-    left: 40px;
+    margin-bottom: 40px; /* 제목과 이미지 사이 간격 */
     z-index: 2;
 }
 
@@ -835,9 +819,9 @@ header {
     word-break: keep-all;
 }
 
-/* 중앙 문구 영역 */
+/* 중앙 문구 영역 - 주석처리된 상태이므로 숨김 처리 */
 .recruit-tagline {
-    /* width: 100%; */
+    display: none; /* 주석처리된 HTML에 맞춰 숨김 */
     text-align: center;
     font-size: 20px;
     line-height: 2;
@@ -848,17 +832,17 @@ header {
 
 .image-title {
     text-align: center;
-    text-align: center;
     margin-bottom: 15px;
     font-weight: 600;
     color: #444;
-    font-size:20px
+    font-size: 20px;
 }
 
-/* 이미지 설정 */
+/* 이미지 설정 - 제목 아래 중앙에 배치 */
 .recruit-images {
+    width: 100%; /* 전체 너비 사용 */
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 0; /* 상단 패딩 제거 */
     padding-bottom: 50px;
     display: flex;
     justify-content: center;
@@ -866,6 +850,7 @@ header {
     position: relative;
     z-index: 2;
 }
+
 .recruit-image-card {
     display: flex;
     flex-direction: column;
@@ -880,7 +865,7 @@ header {
     transition: all 0.3s ease;
     aspect-ratio: 2/3;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    cursor: none; /* 기본 커서 숨기기 */
+    cursor: none;
 }
 
 .recruit-image-container img {
@@ -909,48 +894,47 @@ header {
 }
 
 .mouse-follower {
-  width: 120px;
-  height: 120px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  background-color: #fde6ece8;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.2s ease-out, background-color 0.3s ease, opacity 0.3s ease;
-  z-index: 99;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background-color: #fde6ece8;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease-out, background-color 0.3s ease, opacity 0.3s ease;
+    z-index: 99;
 }
 
 .follower-link {
-  color: #333;
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  padding: 6px 12px;
-  border-radius: 20px;
-  pointer-events: auto;
-  position: relative;
-  z-index: 99;
-  transition: transform 0.2s ease;
+    color: #333;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    pointer-events: auto;
+    position: relative;
+    z-index: 99;
+    transition: transform 0.2s ease;
 }
 
 .follower-link:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .recruit-image-container {
-  overflow: hidden;
-  position: relative;
-  cursor: none; /* 기본 커서 숨기기 */
+    overflow: hidden;
+    position: relative;
+    cursor: none;
 }
-  
 
 /* 버튼과 푸터 영역 */
 .recruit-footer {
@@ -960,7 +944,6 @@ header {
     align-items: center;
     position: relative;
     z-index: 2;
-
     font-size: 16px;
     line-height: 1.8;
     color: #666;
@@ -1172,50 +1155,56 @@ body {
     font-size: 14px;
 }
 
+
 /* Recruit 섹션 */
 .recruit {
     padding: 60px 0;
 }
+
 .recruit-inner {
     padding: 0 20px;
     justify-content: center;
+    flex-direction: column;
+    align-items: center; 
 }
+
 .recruit-left {
     position: static;
     width: 100%;
     padding-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     text-align: center;
 }
+
 .recruit-left h2 {
     font-size: 28px;
 }
-.recruit-tagline {
-    font-size: 1px;
-}
+
+
 .recruit-images {
-    padding-top: 0;
+    padding-top: 0; 
     flex-direction: column;
     gap: 30px;
+    width: 100%; 
 }
+
 .recruit-image-container {
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
 }
+
 .recruit-image-card h4 {
     text-align: center;
     margin-bottom: 15px;
     font-size: 18px;
 }
+
 .recruit-image-card p {
     text-align: center;
     margin-top: 10px;
 }
-.recruit-btn {
-    width: 80px;
-    height: 80px;
-}
+
 .recruit-footer {
     font-size: 13px;
 }
@@ -1297,4 +1286,6 @@ footer {
 .character-card {
     min-width: 90vw;
 }
+
+
 }
