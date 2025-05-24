@@ -120,84 +120,100 @@ containers.forEach(container => {
   const defaultImage = container.querySelector(".image-default");
   
   let isHovering = false;
+  let animationId = null;
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
   
   // 마우스 팔로워 초기 설정
-  gsap.set(follower, {
-    xPercent: -50,
-    yPercent: -50,
-    scale: 0,
-    opacity: 0
-  });
+  follower.style.transform = 'translate(-50%, -50%) scale(0)';
+  follower.style.opacity = '0';
+  follower.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  
+  // 부드러운 애니메이션 함수
+  function smoothFollow() {
+    if (!isHovering) return;
+    
+    // 부드러운 이징 (0.15 정도가 적당함)
+    const ease = 0.15;
+    
+    // 현재 위치와 목표 위치의 차이 계산
+    const deltaX = targetX - currentX;
+    const deltaY = targetY - currentY;
+    
+    // 차이가 충분히 작으면 애니메이션 중단
+    if (Math.abs(deltaX) < 0.1 && Math.abs(deltaY) < 0.1) {
+      currentX = targetX;
+      currentY = targetY;
+      follower.style.transform = `translate(${currentX - follower.offsetWidth/2}px, ${currentY - follower.offsetHeight/2}px) scale(1)`;
+      return;
+    }
+    
+    // 부드럽게 따라가기
+    currentX += deltaX * ease;
+    currentY += deltaY * ease;
+    
+    // 위치 업데이트
+    follower.style.transform = `translate(${currentX - follower.offsetWidth/2}px, ${currentY - follower.offsetHeight/2}px) scale(1)`;
+    
+    // 다음 프레임 요청
+    animationId = requestAnimationFrame(smoothFollow);
+  }
   
   // 마우스 진입 이벤트
   container.addEventListener("mouseenter", (e) => {
     isHovering = true;
     
-    // 팔로워를 현재 마우스 위치로 즉시 이동 (튀는 현상 방지)
-    gsap.set(follower, {
-      x: e.offsetX,
-      y: e.offsetY
-    });
+    // 현재 마우스 위치로 즉시 설정 (튀는 현상 방지)
+    targetX = e.offsetX;
+    targetY = e.offsetY;
+    currentX = e.offsetX;
+    currentY = e.offsetY;
     
-    // 팔로워 표시 애니메이션
-    gsap.to(follower, {
-      scale: 1,
-      opacity: 1,
-      duration: 0.3,
-      ease: "back.out(1.2)"
-    });
+    // 팔로워 즉시 위치 설정 후 표시
+    follower.style.transform = `translate(${currentX - follower.offsetWidth/2}px, ${currentY - follower.offsetHeight/2}px) scale(1)`;
+    follower.style.opacity = '1';
     
-    // 이미지 전환 애니메이션
-    gsap.to(hoverImage, {
-      opacity: 1,
-      duration: 0.4,
-      ease: "power2.out"
-    });
+    // 이미지 전환
+    hoverImage.style.transition = 'opacity 0.4s ease';
+    defaultImage.style.transition = 'opacity 0.4s ease';
+    hoverImage.style.opacity = '1';
+    defaultImage.style.opacity = '0';
     
-    gsap.to(defaultImage, {
-      opacity: 0,
-      duration: 0.4,
-      ease: "power2.out"
-    });
+    // 부드러운 팔로우 시작
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+    smoothFollow();
   });
   
   // 마우스 이동 이벤트
   container.addEventListener("mousemove", (e) => {
     if (!isHovering) return;
     
-    // GSAP를 사용한 부드러운 팔로우 애니메이션
-    gsap.to(follower, {
-      x: e.offsetX,
-      y: e.offsetY,
-      duration: 0.2,
-      ease: "power2.out"
-    });
+    // 목표 위치 업데이트
+    targetX = e.offsetX;
+    targetY = e.offsetY;
   });
   
   // 마우스 이탈 이벤트
   container.addEventListener("mouseleave", () => {
     isHovering = false;
     
-    // 팔로워 숨김 애니메이션
-    gsap.to(follower, {
-      scale: 0,
-      opacity: 0,
-      duration: 0.2,
-      ease: "power2.in"
-    });
+    // 애니메이션 중단
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
     
-    // 이미지 원상복귀 애니메이션
-    gsap.to(hoverImage, {
-      opacity: 0,
-      duration: 0.3,
-      ease: "power2.in"
-    });
+    // 팔로워 숨김
+    follower.style.opacity = '0';
+    follower.style.transform = 'translate(-50%, -50%) scale(0)';
     
-    gsap.to(defaultImage, {
-      opacity: 1,
-      duration: 0.3,
-      ease: "power2.in"
-    });
+    // 이미지 원상복귀
+    hoverImage.style.opacity = '0';
+    defaultImage.style.opacity = '1';
   });
 });
 
