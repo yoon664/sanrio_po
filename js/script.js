@@ -126,27 +126,37 @@ containers.forEach(container => {
   let currentX = 0;
   let currentY = 0;
   
-  // 마우스 팔로워 초기 설정
-  follower.style.transform = 'translate(-50%, -50%) scale(0)';
+  // 마우스 팔로워 초기 설정 (중앙 정렬 방식 변경)
+  follower.style.position = 'absolute';
+  follower.style.transform = 'scale(0)';
   follower.style.opacity = '0';
   follower.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  follower.style.pointerEvents = 'none';
+  
+  // 정확한 마우스 좌표 계산 함수
+  function getMousePosition(e, element) {
+    const rect = element.getBoundingClientRect();
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
   
   // 부드러운 애니메이션 함수
   function smoothFollow() {
     if (!isHovering) return;
     
-    // 부드러운 이징 (0.15 정도가 적당함)
-    const ease = 0.15;
+    const ease = 0.12;
     
     // 현재 위치와 목표 위치의 차이 계산
     const deltaX = targetX - currentX;
     const deltaY = targetY - currentY;
     
     // 차이가 충분히 작으면 애니메이션 중단
-    if (Math.abs(deltaX) < 0.1 && Math.abs(deltaY) < 0.1) {
+    if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) {
       currentX = targetX;
       currentY = targetY;
-      follower.style.transform = `translate(${currentX - follower.offsetWidth/2}px, ${currentY - follower.offsetHeight/2}px) scale(1)`;
+      updateFollowerPosition();
       return;
     }
     
@@ -154,26 +164,39 @@ containers.forEach(container => {
     currentX += deltaX * ease;
     currentY += deltaY * ease;
     
-    // 위치 업데이트
-    follower.style.transform = `translate(${currentX - follower.offsetWidth/2}px, ${currentY - follower.offsetHeight/2}px) scale(1)`;
+    updateFollowerPosition();
     
     // 다음 프레임 요청
     animationId = requestAnimationFrame(smoothFollow);
+  }
+  
+  // 팔로워 위치 업데이트 함수
+  function updateFollowerPosition() {
+    // 팔로워 크기의 절반만큼 빼서 중앙 정렬
+    const halfWidth = follower.offsetWidth / 2;
+    const halfHeight = follower.offsetHeight / 2;
+    
+    follower.style.left = `${currentX - halfWidth}px`;
+    follower.style.top = `${currentY - halfHeight}px`;
   }
   
   // 마우스 진입 이벤트
   container.addEventListener("mouseenter", (e) => {
     isHovering = true;
     
-    // 현재 마우스 위치로 즉시 설정 (튀는 현상 방지)
-    targetX = e.offsetX;
-    targetY = e.offsetY;
-    currentX = e.offsetX;
-    currentY = e.offsetY;
+    // 정확한 마우스 위치 계산
+    const mousePos = getMousePosition(e, container);
+    targetX = mousePos.x;
+    targetY = mousePos.y;
+    currentX = mousePos.x;
+    currentY = mousePos.y;
     
-    // 팔로워 즉시 위치 설정 후 표시
-    follower.style.transform = `translate(${currentX - follower.offsetWidth/2}px, ${currentY - follower.offsetHeight/2}px) scale(1)`;
+    // 팔로워 즉시 위치 설정
+    updateFollowerPosition();
+    
+    // 팔로워 표시
     follower.style.opacity = '1';
+    follower.style.transform = 'scale(1)';
     
     // 이미지 전환
     hoverImage.style.transition = 'opacity 0.4s ease';
@@ -192,9 +215,10 @@ containers.forEach(container => {
   container.addEventListener("mousemove", (e) => {
     if (!isHovering) return;
     
-    // 목표 위치 업데이트
-    targetX = e.offsetX;
-    targetY = e.offsetY;
+    // 정확한 마우스 위치 계산 후 목표 위치 업데이트
+    const mousePos = getMousePosition(e, container);
+    targetX = mousePos.x;
+    targetY = mousePos.y;
   });
   
   // 마우스 이탈 이벤트
@@ -209,7 +233,7 @@ containers.forEach(container => {
     
     // 팔로워 숨김
     follower.style.opacity = '0';
-    follower.style.transform = 'translate(-50%, -50%) scale(0)';
+    follower.style.transform = 'scale(0)';
     
     // 이미지 원상복귀
     hoverImage.style.opacity = '0';
