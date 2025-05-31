@@ -644,8 +644,9 @@ header {
     font-family: "Bagel Fat One", system-ui;
     text-align: center;
     font-size: 40px;
-    margin: 50px 0;
-    padding: 50px 0;
+    margin: 10vh 0;
+    /* margin: 50px 0; */
+    /* padding: 50px 0; */
     color: #f44588;
 }
 
@@ -678,12 +679,12 @@ header {
 }
 
 .character-card h3 {
-    margin-bottom: 20px;
+    margin-bottom: 4px;
 } 
 
 .character-card p {
     opacity: 0;
-    font-size: 20px;
+    font-size: 16px;
     transition: opacity 0.3s ease, transform 0.3s ease;
     transform: translateY(20px);
 }
@@ -718,7 +719,7 @@ header {
 
 .char-info h3 {
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .char-image {
@@ -954,7 +955,7 @@ header {
 
 /* footer */
 footer {
-    height: 100vh;
+    /* height: 100vh; */
     background-image: url('img/spmm111.png');
     background-size: cover;
     background-position: center;
@@ -1302,7 +1303,7 @@ footer {
         top: 0;
         z-index: 10;
         overflow: visible !important; /* overflow 변경 */
-        padding-top: 80px; /* 상단 패딩 추가 (헤더와 겹침 방지) */
+         /*padding-top: 80px; 상단 패딩 추가 (헤더와 겹침 방지) */
     }
 
     .characters-scroll h2 {
