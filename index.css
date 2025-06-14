@@ -1562,3 +1562,225 @@ footer {
         }
     }
 }
+
+/* 1200px 이하에서 크기 조정 - 기존 배치 유지 */
+@media (max-width: 1200px) {
+    /* 전체 컨테이너 패딩 조정 */
+    .concept-inner {
+        padding: 0 30px;
+    }
+    
+    /* 왼쪽 상단 제목 영역 크기 조정 */
+    .concept-left {
+        min-width: 300px; /* 기존 400px에서 줄임 */
+        max-width: 350px;
+    }
+    
+    .concept-left h3 {
+        font-size: 22px; /* 기존 25px에서 줄임 */
+        margin-bottom: 12px;
+    }
+    
+    .concept-left h2 {
+        font-size: 28px; /* 기존 36px에서 줄임 */
+        line-height: 1.3;
+        margin-bottom: 25px;
+    }
+    
+    /* 중앙 이미지 영역 크기 조정 */
+    .concept-center {
+        width: 35%; /* 기존 40%에서 줄임 */
+        margin-left: 22%; /* 기존 25%에서 조정 */
+        padding: 200px 0; /* 기존 250px에서 줄임 */
+    }
+    
+    .concept-image img {
+        max-width: 350px; /* 기존 420px에서 줄임 */
+    }
+    
+    /* 오른쪽 하단 영역 크기 조정 */
+    .concept-right {
+        width: 28%; /* 기존 30%에서 줄임 */
+        min-width: 350px; /* 기존 420px에서 줄임 */
+        right: 50px; /* 기존 70px에서 줄임 */
+        bottom: -40px; /* 기존 -60px에서 조정 */
+    }
+    
+    .concept-description {
+        font-size: 18px; /* 기존 20px에서 줄임 */
+        line-height: 1.8;
+        margin-bottom: 25px;
+    }
+    
+    .concept-btn {
+        width: 100px; /* 기존 120px에서 줄임 */
+        height: 100px;
+    }
+    
+    .concept-btn .arrow {
+        font-size: 18px; /* 기존 20px에서 줄임 */
+    }
+    
+    .concept-btn2 {
+        font-size: 16px; /* 기존 18px에서 줄임 */
+        margin-left: 14px;
+    }
+    
+    .concept-footer {
+        font-size: 13px; /* 기존 14px에서 줄임 */
+        margin-top: 30px; /* 기존 40px에서 줄임 */
+    }
+}
+
+/* 1000px 이하에서 추가 크기 조정 */
+@media (max-width: 1000px) {
+    .concept-left {
+        min-width: 280px;
+        max-width: 320px;
+    }
+    
+    .concept-left h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .concept-left h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .concept-center {
+        width: 32%;
+        margin-left: 20%;
+        padding: 150px 0;
+    }
+    
+    .concept-image img {
+        max-width: 300px;
+    }
+    
+    .concept-right {
+        width: 26%;
+        min-width: 300px;
+        right: 40px;
+        bottom: -20px;
+    }
+    
+    .concept-description {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+    
+    .concept-btn {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .concept-btn .arrow {
+        font-size: 16px;
+    }
+    
+    .concept-btn2 {
+        font-size: 14px;
+        margin-left: 12px;
+    }
+    
+    .concept-footer {
+        font-size: 12px;
+        margin-top: 25px;
+    }
+}
+
+/* 기존 768px 이하 모바일 스타일은 그대로 유지 */
+@media (max-width: 768px) {
+    .concept {
+        padding: 50px 0;
+        min-height: auto;
+    }
+
+    .concept-inner {
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .concept-left {
+        position: relative;
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+        padding-top: 0;
+        margin-bottom: 30px;
+        left: 0;
+        text-align: center;
+    }
+
+    .concept-left h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .concept-left h2 {
+        font-size: 24px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    .concept-center {
+        width: 100%;
+        margin: 0 auto 30px;
+        padding: 0;
+    }
+
+    .concept-image img {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .concept-right {
+        position: relative;
+        width: 100%;
+        min-width: unset;
+        bottom: auto;
+        right: auto;
+        padding-bottom: 20px;
+    }
+
+    .concept-description {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .concept-description br {
+        display: none;
+    }
+
+    .concept-button-wrap {
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .concept-btn {
+        width: 80px;
+        height: 80px;
+    }
+
+    .concept-btn .arrow {
+        font-size: 16px;
+    }
+
+    .concept-btn2 {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .concept-footer {
+        font-size: 13px;
+        margin-top: 20px;
+        text-align: center;
+    }
+}
