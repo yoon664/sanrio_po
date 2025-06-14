@@ -1,3 +1,13 @@
+## 250531
+SANRIO CHARACTERS 가로로 밀어주던지 같이
+메뉴를 밑으로 스크롤 할때는 없어지게 하던지
+
+한글폰트 : https://github.com/orioncactus/pretendard
+
+이미지는 fixed 
+height값은 제거
+
+
 ## menu click animation (o)
 https://lottiefiles.com/free-animation/hamburger-Lhi7wLaPf6
 
