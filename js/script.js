@@ -68,6 +68,85 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     // 가로 스크롤 진행도 계산 및 적용
+    // 기존 js/script.js 파일에서 updateHorizontalScroll 함수를 이렇게 수정하세요
+
+// 가로 스크롤 진행도 계산 및 적용
+function updateHorizontalScroll() {
+    if (!scrollWrapper || !scrollContainer) return;
+    
+    const containerInfo = calculateContainerSize();
+    if (!containerInfo) return;
+    
+    const scrollY = window.scrollY;
+    
+    // 가로 스크롤 구간 내부인지 확인 (0vh~350vh)
+    const isInContainer = scrollY >= containerInfo.top && 
+                         scrollY <= containerInfo.bottom;
+    
+    if (isInContainer) {
+        // 진행도 계산 (0-1 사이 값)
+        const progress = (scrollY - containerInfo.top) / (containerInfo.height - window.innerHeight);
+        const normalizedProgress = Math.max(0, Math.min(1, progress));
+        
+        // 실제 스크롤할 수 있는 최대 너비
+        const scrollableWidth = scrollWrapper.scrollWidth - window.innerWidth + 50;
+        const translateX = normalizedProgress * scrollableWidth;
+        
+        // 가로 스크롤 적용
+        scrollWrapper.style.transform = `translateX(-${translateX}px)`;
+        
+        // 모바일에서만 제목 숨기기/보이기 로직
+        const h2Element = document.querySelector('.characters-scroll h2');
+        const isMobile = window.innerWidth <= 767; // 모바일 크기 체크
+        
+        if (h2Element && isMobile) {
+            // 모바일에서만 스크롤 진행도에 따라 제목 제어
+            if (normalizedProgress > 0.05) { // 5% 스크롤되면 숨김 시작
+                const fadeProgress = Math.min(1, (normalizedProgress - 0.05) / 0.1); // 5%~15% 구간에서 페이드
+                h2Element.style.opacity = 1 - fadeProgress;
+                h2Element.style.transform = `translateY(-${fadeProgress * 30}px)`;
+                h2Element.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+            } else {
+                // 스크롤이 5% 미만일 때는 완전히 보임
+                h2Element.style.opacity = '1';
+                h2Element.style.transform = 'translateY(0)';
+            }
+        } else if (h2Element && !isMobile) {
+            // 데스크톱에서는 항상 제목 보임 (초기화)
+            h2Element.style.opacity = '1';
+            h2Element.style.transform = 'translateY(0)';
+            h2Element.style.transition = '';
+        }
+    } else {
+        // 스크롤 구간 밖에서는 제목 복원
+        const h2Element = document.querySelector('.characters-scroll h2');
+        if (h2Element) {
+            h2Element.style.opacity = '1';
+            h2Element.style.transform = 'translateY(0)';
+        }
+    }
+}
+
+// 윈도우 리사이즈 시에도 제목 상태 초기화
+function initialize() {
+    updateHorizontalScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", function() {
+        updateHorizontalScroll();
+        
+        // 리사이즈 시 제목 상태 초기화
+        const h2Element = document.querySelector('.characters-scroll h2');
+        if (h2Element) {
+            if (window.innerWidth > 767) {
+                // 데스크톱으로 전환 시 제목 복원
+                h2Element.style.opacity = '1';
+                h2Element.style.transform = 'translateY(0)';
+                h2Element.style.transition = '';
+            }
+        }
+    });
+}
+    /*
     function updateHorizontalScroll() {
         if (!scrollWrapper || !scrollContainer) return;
         
@@ -93,18 +172,20 @@ document.addEventListener("DOMContentLoaded", function () {
             scrollWrapper.style.transform = `translateX(-${translateX}px)`;
         }
     }
-    
+    */
+
     // 스크롤 이벤트 처리
     function handleScroll() {
         updateHorizontalScroll();
     }
     
     // 초기 설정
+    /*
     function initialize() {
         updateHorizontalScroll();
         window.addEventListener("scroll", handleScroll, { passive: true });
         window.addEventListener("resize", updateHorizontalScroll);
-    }
+    }*/
     
     initialize();
 });
@@ -292,156 +373,6 @@ containers.forEach(container => {
   });
 });
 
-/*
-const containers = document.querySelectorAll(".recruit-image-container");
-
-containers.forEach(container => {
-  const follower = container.querySelector(".mouse-follower");
-  const hoverImage = container.querySelector(".image-hover");
-  const defaultImage = container.querySelector(".image-default");
-  
-  let isHovering = false;
-  let animationId = null;
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  
-  // container를 relative로 설정
-  container.style.position = 'relative';
-  
-  // 마우스 팔로워 초기 설정
-  follower.style.position = 'absolute';
-  follower.style.left = '0px';
-  follower.style.top = '0px';
-  follower.style.transform = 'translate(-50%, -50%) scale(0)';
-  follower.style.opacity = '0';
-  follower.style.transition = 'opacity 0.3s ease';
-  follower.style.pointerEvents = 'none'; // 중요: 마우스 이벤트 차단
-  follower.style.zIndex = '99';
-  
-  // 부드러운 애니메이션 함수
-  function smoothFollow() {
-    if (!isHovering) {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-      }
-      return;
-    }
-    
-    const ease = 0.12;
-    
-    // 현재 위치와 목표 위치의 차이 계산
-    const deltaX = targetX - currentX;
-    const deltaY = targetY - currentY;
-    
-    // 차이가 충분히 작으면 정확한 위치로 설정
-    if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) {
-      currentX = targetX;
-      currentY = targetY;
-      follower.style.left = `${currentX}px`;
-      follower.style.top = `${currentY}px`;
-      follower.style.transform = 'translate(-50%, -50%) scale(1)';
-      
-      // 애니메이션 계속 실행 (마우스 움직임 대기)
-      animationId = requestAnimationFrame(smoothFollow);
-      return;
-    }
-    
-    // 부드럽게 따라가기
-    currentX += deltaX * ease;
-    currentY += deltaY * ease;
-    
-    // 위치 업데이트
-    follower.style.left = `${currentX}px`;
-    follower.style.top = `${currentY}px`;
-    follower.style.transform = 'translate(-50%, -50%) scale(1)';
-    
-    // 다음 프레임 요청
-    animationId = requestAnimationFrame(smoothFollow);
-  }
-  
-  // 마우스 진입 이벤트
-  container.addEventListener("mouseenter", (e) => {
-    if (isHovering) return; // 이미 hover 상태면 무시
-    
-    isHovering = true;
-    
-    // 현재 마우스 위치 계산
-    const rect = container.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    
-    // 즉시 설정
-    targetX = mouseX;
-    targetY = mouseY;
-    currentX = mouseX;
-    currentY = mouseY;
-    
-    // 팔로워 즉시 위치 설정 및 표시
-    follower.style.left = `${currentX}px`;
-    follower.style.top = `${currentY}px`;
-    follower.style.transform = 'translate(-50%, -50%) scale(1)';
-    follower.style.opacity = '1';
-    
-    // 이미지 전환
-    hoverImage.style.transition = 'opacity 0.4s ease';
-    defaultImage.style.transition = 'opacity 0.4s ease';
-    hoverImage.style.opacity = '1';
-    defaultImage.style.opacity = '0';
-    
-    // 부드러운 팔로우 시작
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-    }
-    animationId = requestAnimationFrame(smoothFollow);
-  });
-  
-  // 마우스 이동 이벤트
-  container.addEventListener("mousemove", (e) => {
-    if (!isHovering) return;
-    
-    // 마우스 위치 계산
-    const rect = container.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    
-    // 목표 위치 업데이트
-    targetX = mouseX;
-    targetY = mouseY;
-  });
-  
-  // 마우스 이탈 이벤트 (더 안정적으로)
-  container.addEventListener("mouseleave", (e) => {
-    // 실제로 container를 벗어났는지 확인
-    const rect = container.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    
-    // container 영역을 실제로 벗어났을 때만 처리
-    if (mouseX < 0 || mouseX > container.offsetWidth || 
-        mouseY < 0 || mouseY > container.offsetHeight) {
-      
-      isHovering = false;
-      
-      // 애니메이션 중단
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-      }
-      
-      // 팔로워 숨김
-      follower.style.opacity = '0';
-      follower.style.transform = 'translate(-50%, -50%) scale(0)';
-      
-      // 이미지 원상복귀
-      hoverImage.style.opacity = '0';
-      defaultImage.style.opacity = '1';
-    }
-  });
-});
-*/
 
 
 // recruit 섹션 배경 이미지 제어

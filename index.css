@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Rubik+Spray+Paint&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Rubik+Spray+Paint&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 
 * {
     margin: 0;
@@ -683,6 +684,7 @@ header {
 
 .character-card p {
     opacity: 0;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     font-size: 20px;
     transition: opacity 0.3s ease, transform 0.3s ease;
     transform: translateY(20px);
@@ -719,6 +721,7 @@ header {
 .char-info h3 {
     text-align: center;
     font-size: 25px;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 .char-image {
